@@ -1,0 +1,96 @@
+{
+  "verifiedAt": "2026-09-01",
+  "guideVersion": "1.0 (effective July 2026)",
+  "sources": {
+    "ccar-f-guide": {"label": "Official CCAR-F Exam Guide", "url": "https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification"},
+    "ccar-p-guide": {"label": "Official CCAR-P Exam Guide", "url": "https://anthropic-partners.skilljar.com/page/partner-certifications"},
+    "cert-faq": {"label": "Anthropic Certification FAQ", "url": "https://anthropic-partners.skilljar.com/page/faq-certifications"},
+    "agent-sdk": {"label": "Claude Agent SDK documentation", "url": "https://platform.claude.com/docs/en/agent-sdk/overview"},
+    "tool-use": {"label": "Claude tool use documentation", "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview"},
+    "mcp": {"label": "Model Context Protocol documentation", "url": "https://modelcontextprotocol.io/docs/getting-started/intro"},
+    "claude-code": {"label": "Claude Code documentation", "url": "https://code.claude.com/docs/en/overview"},
+    "prompting": {"label": "Anthropic prompt engineering documentation", "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview"},
+    "batching": {"label": "Message Batches API documentation", "url": "https://platform.claude.com/docs/en/build-with-claude/batch-processing"},
+    "prompt-caching": {"label": "Prompt caching documentation", "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching"},
+    "models": {"label": "Claude models overview", "url": "https://platform.claude.com/docs/en/about-claude/models/overview"}
+  },
+  "tracks": [
+    {
+      "id": "ccar-f",
+      "shortName": "Architect Foundations",
+      "examItems": 60,
+      "expectedQuestions": 30,
+      "domains": [
+        {"id": "f-d1", "name": "Agentic Architecture & Orchestration", "weight": 27, "objectives": [
+          {"id": "1.1", "name": "Agentic loops"}, {"id": "1.2", "name": "Coordinator-subagent orchestration"},
+          {"id": "1.3", "name": "Subagent invocation and context"}, {"id": "1.4", "name": "Workflow enforcement and handoff"},
+          {"id": "1.5", "name": "Agent SDK hooks"}, {"id": "1.6", "name": "Task decomposition"},
+          {"id": "1.7", "name": "Session state, resumption, and forking"}
+        ]},
+        {"id": "f-d2", "name": "Tool Design & MCP Integration", "weight": 18, "objectives": [
+          {"id": "2.1", "name": "Tool interfaces and boundaries"}, {"id": "2.2", "name": "Structured MCP errors"},
+          {"id": "2.3", "name": "Tool distribution and tool choice"}, {"id": "2.4", "name": "MCP integration"},
+          {"id": "2.5", "name": "Built-in tool selection"}
+        ]},
+        {"id": "f-d3", "name": "Claude Code Configuration & Workflows", "weight": 20, "objectives": [
+          {"id": "3.1", "name": "CLAUDE.md hierarchy"}, {"id": "3.2", "name": "Commands and skills"},
+          {"id": "3.3", "name": "Path-specific rules"}, {"id": "3.4", "name": "Plan mode"},
+          {"id": "3.5", "name": "Iterative refinement"}, {"id": "3.6", "name": "CI/CD integration"}
+        ]},
+        {"id": "f-d4", "name": "Prompt Engineering & Structured Output", "weight": 20, "objectives": [
+          {"id": "4.1", "name": "Explicit criteria"}, {"id": "4.2", "name": "Few-shot prompting"},
+          {"id": "4.3", "name": "Tool use and JSON schemas"}, {"id": "4.4", "name": "Validation and retry loops"},
+          {"id": "4.5", "name": "Batch processing"}, {"id": "4.6", "name": "Independent and multi-pass review"}
+        ]},
+        {"id": "f-d5", "name": "Context Management & Reliability", "weight": 15, "objectives": [
+          {"id": "5.1", "name": "Long-conversation context"}, {"id": "5.2", "name": "Escalation and ambiguity"},
+          {"id": "5.3", "name": "Multi-agent error propagation"}, {"id": "5.4", "name": "Large-codebase context"},
+          {"id": "5.5", "name": "Human review and calibration"}, {"id": "5.6", "name": "Provenance and uncertainty"}
+        ]}
+      ]
+    },
+    {
+      "id": "ccar-p",
+      "shortName": "Architect Professional",
+      "examItems": 63,
+      "expectedQuestions": 38,
+      "domains": [
+        {"id": "p-d1", "name": "Solution Design & Architecture", "weight": 17, "objectives": [
+          {"id": "1.1", "name": "Translate business problems"}, {"id": "1.2", "name": "End-to-end architecture"},
+          {"id": "1.3", "name": "Select architecture patterns"}, {"id": "1.4", "name": "Multi-agent design"},
+          {"id": "1.5", "name": "Problem decomposition"}, {"id": "1.6", "name": "Business value and SLAs"}
+        ]},
+        {"id": "p-d2", "name": "Claude Models, Prompting & Context Engineering", "weight": 13, "objectives": [
+          {"id": "2.1", "name": "Model selection"}, {"id": "2.2", "name": "Prompts and guardrails"},
+          {"id": "2.3", "name": "Prompting techniques"}, {"id": "2.4", "name": "Context and token use"},
+          {"id": "2.5", "name": "Prompt reuse"}
+        ]},
+        {"id": "p-d3", "name": "Integration", "weight": 19, "objectives": [
+          {"id": "3.1", "name": "Capability bloat"}, {"id": "3.2", "name": "Authentication and authorization"},
+          {"id": "3.3", "name": "Accuracy-latency trade-offs"}, {"id": "3.4", "name": "Observability at scale"},
+          {"id": "3.5", "name": "RAG chunking and indexing"}, {"id": "3.6", "name": "Retrieval strategies"},
+          {"id": "3.7", "name": "Connection protocols"}, {"id": "3.8", "name": "Progressive discovery"}
+        ]},
+        {"id": "p-d4", "name": "Evaluation, Testing & Optimization", "weight": 16, "objectives": [
+          {"id": "4.1", "name": "Evaluation metrics"}, {"id": "4.2", "name": "Datasets and frameworks"},
+          {"id": "4.3", "name": "A/B testing"}, {"id": "4.4", "name": "Issue diagnosis"},
+          {"id": "4.5", "name": "Cost-performance optimization"}, {"id": "4.6", "name": "Operational monitoring"}
+        ]},
+        {"id": "p-d5", "name": "Governance, Safety & Risk Management", "weight": 14, "objectives": [
+          {"id": "5.1", "name": "Guardrails and safety controls"}, {"id": "5.2", "name": "Risks and failure modes"},
+          {"id": "5.3", "name": "Human-in-the-loop"}, {"id": "5.4", "name": "Regulatory compliance"},
+          {"id": "5.5", "name": "Bias, fairness, and transparency"}
+        ]},
+        {"id": "p-d6", "name": "Stakeholder Communication & Lifecycle Management", "weight": 14, "objectives": [
+          {"id": "6.1", "name": "Discovery and requirements"}, {"id": "6.2", "name": "Communicate trade-offs"},
+          {"id": "6.3", "name": "Feedback and SLA alignment"}, {"id": "6.4", "name": "Architecture documentation"},
+          {"id": "6.5", "name": "Lifecycle ownership"}
+        ]},
+        {"id": "p-d7", "name": "Developer Productivity & Operational Enablement", "weight": 7, "objectives": [
+          {"id": "7.1", "name": "Team configuration"}, {"id": "7.2", "name": "AI-assisted workflows"},
+          {"id": "7.3", "name": "Debugging and operations"}
+        ]}
+      ]
+    }
+  ]
+}

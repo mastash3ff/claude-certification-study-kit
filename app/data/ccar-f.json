@@ -1,0 +1,304 @@
+{
+  "questions": [
+    {
+      "id": "f-1.1", "track": "ccar-f", "domain": "f-d1", "objective": "1.1", "select": 1,
+      "stem": "An agent calls tools correctly, but the controller sometimes ends after a tool response because it searches the assistant text for the word 'done.' What should control the loop?",
+      "options": [
+        {"id": "a", "text": "Increase the maximum iteration count", "rationale": "A larger cap does not provide a reliable completion signal."},
+        {"id": "b", "text": "Continue on stop_reason=tool_use and finish on stop_reason=end_turn", "rationale": "The API stop reason is the structured control signal for the agentic loop."},
+        {"id": "c", "text": "Ask Claude to end every final answer with DONE", "rationale": "Natural-language sentinels remain probabilistic and can appear in ordinary content."},
+        {"id": "d", "text": "Stop whenever an assistant message contains text", "rationale": "A tool-use response can contain text and still require another iteration."}
+      ], "correct": ["b"], "tags": ["natural-language-control"], "sources": ["ccar-f-guide", "agent-sdk"]
+    },
+    {
+      "id": "f-1.2", "track": "ccar-f", "domain": "f-d1", "objective": "1.2", "select": 1,
+      "stem": "A research report about the creative economy covers only visual art. Every subagent completed successfully, but the coordinator assigned only photography, illustration, and design. Where is the root cause?",
+      "options": [
+        {"id": "a", "text": "The synthesis model needs a larger context window", "rationale": "The missing fields never reached synthesis, so more context cannot restore them."},
+        {"id": "b", "text": "The search subagent needs more retries", "rationale": "Search completed its assigned visual-art scope; retries would repeat the narrow task."},
+        {"id": "c", "text": "The coordinator decomposed the topic too narrowly", "rationale": "The coordinator omitted music, film, and writing before delegation began."},
+        {"id": "d", "text": "Subagents should communicate directly to fill gaps", "rationale": "Direct peer communication weakens coordinator visibility and does not fix the initial scope."}
+      ], "correct": ["c"], "tags": ["wrong-component"], "sources": ["ccar-f-guide", "agent-sdk"]
+    },
+    {
+      "id": "f-1.3", "track": "ccar-f", "domain": "f-d1", "objective": "1.3", "select": 2,
+      "stem": "A coordinator must launch three independent analysts concurrently and then give their evidence to a synthesizer. Which TWO design choices are required?",
+      "options": [
+        {"id": "a", "text": "Assume subagents inherit the coordinator transcript", "rationale": "Subagents start with isolated context unless information is explicitly passed."},
+        {"id": "b", "text": "Include Task in the coordinator's allowed tools", "rationale": "The coordinator needs the Task capability to spawn subagents."},
+        {"id": "c", "text": "Spawn each analyst in a separate coordinator turn", "rationale": "Separate turns serialize work that can be requested in one response."},
+        {"id": "d", "text": "Pass findings and source metadata explicitly to synthesis", "rationale": "Explicit structured context preserves both evidence and attribution across isolation boundaries."}
+      ], "correct": ["b", "d"], "tags": ["implicit-context"], "sources": ["ccar-f-guide", "agent-sdk"]
+    },
+    {
+      "id": "f-1.4", "track": "ccar-f", "domain": "f-d1", "objective": "1.4", "select": 1,
+      "stem": "A refund agent occasionally issues money before identity verification despite a clear system prompt. Which change gives the required guarantee?",
+      "options": [
+        {"id": "a", "text": "Block refund calls programmatically until verification succeeds", "rationale": "A prerequisite gate deterministically enforces the business sequence."},
+        {"id": "b", "text": "Cap the agent at three iterations", "rationale": "Iteration limits do not enforce which actions happen first."},
+        {"id": "c", "text": "Repeat the verification instruction in uppercase", "rationale": "Stronger wording still relies on probabilistic compliance."},
+        {"id": "d", "text": "Use a larger model for all refund requests", "rationale": "Model capability is not a substitute for an enforceable authorization boundary."}
+      ], "correct": ["a"], "tags": ["prompt-instead-of-enforcement"], "sources": ["ccar-f-guide", "agent-sdk"]
+    },
+    {
+      "id": "f-1.5", "track": "ccar-f", "domain": "f-d1", "objective": "1.5", "select": 1,
+      "stem": "Three MCP tools return dates as Unix seconds, ISO strings, and locale-formatted text. The model repeatedly compares them incorrectly. What is the strongest fix?",
+      "options": [
+        {"id": "a", "text": "Add examples of every possible date format to the prompt", "rationale": "Examples add context but leave normalization probabilistic and incomplete."},
+        {"id": "b", "text": "Ask each subagent to choose its preferred format", "rationale": "Independent choices increase heterogeneity rather than remove it."},
+        {"id": "c", "text": "Normalize tool results in a PostToolUse hook", "rationale": "A hook can deterministically transform all dates before the model reasons over them."},
+        {"id": "d", "text": "Retry comparisons when confidence is low", "rationale": "Retries repeat reasoning over inconsistent inputs."}
+      ], "correct": ["c"], "tags": ["structural-fix"], "sources": ["ccar-f-guide", "agent-sdk"]
+    },
+    {
+      "id": "f-1.6", "track": "ccar-f", "domain": "f-d1", "objective": "1.6", "select": 1,
+      "stem": "Claude must add comprehensive tests to an unfamiliar legacy service whose risky areas are not known in advance. Which decomposition fits best?",
+      "options": [
+        {"id": "a", "text": "Run a fixed list of language-agnostic test prompts", "rationale": "A fixed chain cannot adapt to dependencies discovered in this codebase."},
+        {"id": "b", "text": "Map the system, identify high-impact paths, then adapt the test plan", "rationale": "Open-ended investigation benefits from dynamic decomposition based on findings."},
+        {"id": "c", "text": "Ask one agent to read every file before planning", "rationale": "Exhaustive reading wastes context and dilutes attention."},
+        {"id": "d", "text": "Generate tests immediately and infer architecture from failures", "rationale": "Implementation before discovery risks low-value or duplicate tests."}
+      ], "correct": ["b"], "tags": ["fixed-vs-adaptive"], "sources": ["ccar-f-guide", "agent-sdk"]
+    },
+    {
+      "id": "f-1.7", "track": "ccar-f", "domain": "f-d1", "objective": "1.7", "select": 1,
+      "stem": "A week-old Claude Code session analyzed files that have since been heavily refactored. You need reliable follow-up work. What should you do?",
+      "options": [
+        {"id": "a", "text": "Resume silently so all prior reasoning remains available", "rationale": "The session contains stale tool results and assumptions."},
+        {"id": "b", "text": "Fork the old session without describing the refactor", "rationale": "Forking preserves the same stale baseline."},
+        {"id": "c", "text": "Resume and ask Claude whether anything changed", "rationale": "Claude cannot infer filesystem changes it has not been told to inspect."},
+        {"id": "d", "text": "Start fresh with a structured summary and the changed-file list", "rationale": "A fresh context preserves durable findings while forcing current evidence for changed areas."}
+      ], "correct": ["d"], "tags": ["stale-state"], "sources": ["ccar-f-guide", "claude-code"]
+    },
+    {
+      "id": "f-2.1", "track": "ccar-f", "domain": "f-d2", "objective": "2.1", "select": 1,
+      "stem": "Two tools named analyze_content and analyze_document accept similar inputs and are frequently confused. What is the best first correction?",
+      "options": [
+        {"id": "a", "text": "Rename and describe each tool with purpose, inputs, outputs, boundaries, and examples", "rationale": "Tool descriptions are the model's primary selection signal and should remove overlap."},
+        {"id": "b", "text": "Add a keyword router in front of Claude", "rationale": "A new routing layer is premature while the interfaces themselves are ambiguous."},
+        {"id": "c", "text": "Let the model call both tools and vote on the result", "rationale": "Duplicate calls add cost and do not resolve unclear responsibility."},
+        {"id": "d", "text": "Put both implementations behind one unconstrained generic tool", "rationale": "A generic interface hides the same ambiguity inside the tool."}
+      ], "correct": ["a"], "tags": ["over-engineered"], "sources": ["ccar-f-guide", "tool-use"]
+    },
+    {
+      "id": "f-2.2", "track": "ccar-f", "domain": "f-d2", "objective": "2.2", "select": 1,
+      "stem": "An MCP operation can fail because of a timeout, invalid input, or a policy denial. What response best supports intelligent recovery?",
+      "options": [
+        {"id": "a", "text": "Always return an empty successful result", "rationale": "This suppresses failure and makes no-match indistinguishable from an outage."},
+        {"id": "b", "text": "Return the same 'Operation failed' text for every error", "rationale": "A generic message hides whether retry or user correction is appropriate."},
+        {"id": "c", "text": "Set isError and return category, retryability, and a safe explanation", "rationale": "Structured metadata lets the agent select retry, correction, or escalation."},
+        {"id": "d", "text": "Throw every exception to terminate the whole workflow", "rationale": "A local tool failure need not destroy recoverable work."}
+      ], "correct": ["c"], "tags": ["suppressed-signal"], "sources": ["ccar-f-guide", "mcp"]
+    },
+    {
+      "id": "f-2.3", "track": "ccar-f", "domain": "f-d2", "objective": "2.3", "select": 2,
+      "stem": "A synthesis agent has 18 tools and often launches unrelated searches instead of composing the report. Which TWO changes best address this?",
+      "options": [
+        {"id": "a", "text": "Give every subagent the same complete tool list", "rationale": "Uniform broad access increases decision complexity and cross-role misuse."},
+        {"id": "b", "text": "Restrict synthesis to composition tools plus a scoped fact verifier", "rationale": "Role-specific access preserves the frequent verification need without broad search capability."},
+        {"id": "c", "text": "Set tool_choice to auto and keep all tools", "rationale": "Auto selection does not reduce the overloaded choice set."},
+        {"id": "d", "text": "Route complex research back through the coordinator", "rationale": "The coordinator retains orchestration and observability for work outside synthesis."}
+      ], "correct": ["b", "d"], "tags": ["capability-bloat"], "sources": ["ccar-f-guide", "tool-use"]
+    },
+    {
+      "id": "f-2.4", "track": "ccar-f", "domain": "f-d2", "objective": "2.4", "select": 2,
+      "stem": "A team needs one shared Jira MCP server and each developer may also experiment with a personal server. Which TWO configurations are appropriate?",
+      "options": [
+        {"id": "a", "text": "Commit the shared server in project .mcp.json with ${JIRA_TOKEN}", "rationale": "Project scope shares configuration while environment expansion keeps the credential out of Git."},
+        {"id": "b", "text": "Commit the Jira token directly in .mcp.json", "rationale": "Shared configuration must not contain the credential value."},
+        {"id": "c", "text": "Place personal experimental servers in ~/.claude.json", "rationale": "User scope is appropriate for private, non-team integrations."},
+        {"id": "d", "text": "Put all servers only in each developer's user config", "rationale": "The team would lose a versioned shared configuration."}
+      ], "correct": ["a", "c"], "tags": ["scope-and-secrets"], "sources": ["ccar-f-guide", "mcp", "claude-code"]
+    },
+    {
+      "id": "f-2.5", "track": "ccar-f", "domain": "f-d2", "objective": "2.5", "select": 1,
+      "stem": "You must find every file whose contents call processRefund, regardless of filename. Which built-in tool is the right starting point?",
+      "options": [
+        {"id": "a", "text": "Glob, because it searches inside matching files", "rationale": "Glob matches paths, not file contents."},
+        {"id": "b", "text": "Read every source file", "rationale": "Reading everything is slower and consumes unnecessary context."},
+        {"id": "c", "text": "Bash with a custom crawler", "rationale": "A custom command is unnecessary when a purpose-built content search exists."},
+        {"id": "d", "text": "Grep, then Read the relevant matches", "rationale": "Grep locates content matches efficiently; Read provides the needed local context."}
+      ], "correct": ["d"], "tags": ["tool-selection"], "sources": ["ccar-f-guide", "claude-code"]
+    },
+    {
+      "id": "f-3.1", "track": "ccar-f", "domain": "f-d3", "objective": "3.1", "select": 1,
+      "stem": "A senior developer's Claude follows team conventions, but a new clone does not. The conventions exist only in ~/.claude/CLAUDE.md. What should change?",
+      "options": [
+        {"id": "a", "text": "Ask every developer to copy the home file manually", "rationale": "Manual copies drift and are not delivered with the repository."},
+        {"id": "b", "text": "Move shared conventions to the project CLAUDE.md", "rationale": "Project instructions are versioned and available to everyone who clones the repo."},
+        {"id": "c", "text": "Add more detail to the user-level file", "rationale": "Content quality does not fix its private scope."},
+        {"id": "d", "text": "Replace conventions with a personal skill", "rationale": "A personal on-demand skill is neither shared nor always loaded."}
+      ], "correct": ["b"], "tags": ["configuration-scope"], "sources": ["ccar-f-guide", "claude-code"]
+    },
+    {
+      "id": "f-3.2", "track": "ccar-f", "domain": "f-d3", "objective": "3.2", "select": 1,
+      "stem": "A repository-analysis workflow produces pages of exploratory output that should not crowd the main conversation. How should a shared skill be configured?",
+      "options": [
+        {"id": "a", "text": "Put the workflow in the root CLAUDE.md", "rationale": "Always-loaded instructions do not isolate verbose task output."},
+        {"id": "b", "text": "Create it only under ~/.claude/skills", "rationale": "User scope prevents the team from receiving the shared workflow."},
+        {"id": "c", "text": "Use a project skill with context: fork and limited allowed-tools", "rationale": "Forked context isolates exploration while project scope and tool limits make behavior shareable and focused."},
+        {"id": "d", "text": "Create a path rule that triggers on every file", "rationale": "Path rules load conventions; they are not an on-demand isolated workflow."}
+      ], "correct": ["c"], "tags": ["wrong-mechanism"], "sources": ["ccar-f-guide", "claude-code"]
+    },
+    {
+      "id": "f-3.3", "track": "ccar-f", "domain": "f-d3", "objective": "3.3", "select": 1,
+      "stem": "Test files sit beside production code throughout many directories, and all **/*.test.tsx files need the same convention. What is most maintainable?",
+      "options": [
+        {"id": "a", "text": "A .claude/rules file scoped with the test-file glob", "rationale": "A path-scoped rule applies automatically across directory boundaries only to matching files."},
+        {"id": "b", "text": "A CLAUDE.md in every directory", "rationale": "Duplicated directory files are difficult to keep consistent."},
+        {"id": "c", "text": "A root prompt asking Claude to notice test filenames", "rationale": "Inference is less deterministic and loads irrelevant guidance everywhere."},
+        {"id": "d", "text": "A manual slash command developers must remember", "rationale": "The requirement is automatic conditional loading, not on-demand invocation."}
+      ], "correct": ["a"], "tags": ["conditional-loading"], "sources": ["ccar-f-guide", "claude-code"]
+    },
+    {
+      "id": "f-3.4", "track": "ccar-f", "domain": "f-d3", "objective": "3.4", "select": 1,
+      "stem": "A team must choose service boundaries while splitting a monolith across dozens of files. Which Claude Code workflow fits the uncertainty?",
+      "options": [
+        {"id": "a", "text": "Directly edit one service at a time and discover boundaries later", "rationale": "Premature edits risk rework when cross-cutting dependencies emerge."},
+        {"id": "b", "text": "Use direct execution with a larger max token setting", "rationale": "Token capacity does not replace architectural exploration."},
+        {"id": "c", "text": "Ask for a complete rewrite in a single prompt", "rationale": "A one-shot rewrite hides trade-offs and increases change risk."},
+        {"id": "d", "text": "Use plan mode to explore dependencies and compare designs first", "rationale": "Plan mode is suited to multi-file changes with architectural choices."}
+      ], "correct": ["d"], "tags": ["premature-execution"], "sources": ["ccar-f-guide", "claude-code"]
+    },
+    {
+      "id": "f-3.5", "track": "ccar-f", "domain": "f-d3", "objective": "3.5", "select": 1,
+      "stem": "Claude keeps mishandling nulls in a migration despite a long prose requirement. What is the most useful next iteration?",
+      "options": [
+        {"id": "a", "text": "Repeat the same requirement more forcefully", "rationale": "Rephrasing without concrete evidence may preserve the ambiguity."},
+        {"id": "b", "text": "Provide failing test cases with exact inputs and expected outputs", "rationale": "Concrete examples expose the transformation boundary and make improvement measurable."},
+        {"id": "c", "text": "Switch models before diagnosing the misunderstanding", "rationale": "Model replacement is premature when the requirement can be clarified."},
+        {"id": "d", "text": "Remove null handling from scope", "rationale": "Avoiding a required edge case does not solve it."}
+      ], "correct": ["b"], "tags": ["vague-requirement"], "sources": ["ccar-f-guide", "claude-code"]
+    },
+    {
+      "id": "f-3.6", "track": "ccar-f", "domain": "f-d3", "objective": "3.6", "select": 2,
+      "stem": "A CI job must run Claude Code without interaction and publish machine-readable review findings. Which TWO choices are essential?",
+      "options": [
+        {"id": "a", "text": "Run with -p (or --print)", "rationale": "Print mode prevents an automated job from waiting for interactive input."},
+        {"id": "b", "text": "Reuse the code-generation session for review", "rationale": "An independent review context is more likely to challenge generation decisions."},
+        {"id": "c", "text": "Parse free-form prose with regular expressions", "rationale": "Free-form parsing is brittle for automation."},
+        {"id": "d", "text": "Use JSON output with a JSON schema", "rationale": "Structured output gives the pipeline a stable machine-readable contract."}
+      ], "correct": ["a", "d"], "tags": ["interactive-ci", "unstructured-output"], "sources": ["ccar-f-guide", "claude-code"]
+    },
+    {
+      "id": "f-4.1", "track": "ccar-f", "domain": "f-d4", "objective": "4.1", "select": 1,
+      "stem": "Automated reviews flag many harmless style differences and developers ignore even valid findings. What prompt change most directly improves trust?",
+      "options": [
+        {"id": "a", "text": "Tell Claude to be more confident", "rationale": "Self-confidence wording does not define which findings matter."},
+        {"id": "b", "text": "Ask for twice as many findings and rank them", "rationale": "More output increases the review burden and false-positive exposure."},
+        {"id": "c", "text": "Define reportable categories and explicitly exclude local style choices", "rationale": "Concrete inclusion and exclusion criteria target the actual false-positive category."},
+        {"id": "d", "text": "Use majority voting across three identical prompts", "rationale": "Repeated broad prompts can reproduce the same vague criteria."}
+      ], "correct": ["c"], "tags": ["vague-criteria"], "sources": ["ccar-f-guide", "prompting"]
+    },
+    {
+      "id": "f-4.2", "track": "ccar-f", "domain": "f-d4", "objective": "4.2", "select": 1,
+      "stem": "A code-review prompt specifies fields and severity definitions, but output remains inconsistent around borderline cases. What should be added?",
+      "options": [
+        {"id": "a", "text": "A longer description of the JSON syntax", "rationale": "The problem is judgment consistency, not merely syntax."},
+        {"id": "b", "text": "Two to four examples covering accepted and rejected borderline findings", "rationale": "Targeted few-shot examples demonstrate both the format and the decision boundary."},
+        {"id": "c", "text": "A request to think longer", "rationale": "More reasoning does not clarify an unstated boundary."},
+        {"id": "d", "text": "A lower temperature alone", "rationale": "Sampling changes cannot supply the missing examples of desired judgment."}
+      ], "correct": ["b"], "tags": ["missing-examples"], "sources": ["ccar-f-guide", "prompting"]
+    },
+    {
+      "id": "f-4.3", "track": "ccar-f", "domain": "f-d4", "objective": "4.3", "select": 1,
+      "stem": "Invoices sometimes omit a purchase-order number. The extractor must always return valid structured output without inventing one. Which design is strongest?",
+      "options": [
+        {"id": "a", "text": "Force an extraction tool whose schema allows purchase_order_number to be null", "rationale": "Forced tool use guarantees the shape, while a nullable field represents genuine absence."},
+        {"id": "b", "text": "Require a non-empty string and tell Claude not to hallucinate", "rationale": "A required value pressures the model to fabricate when the source lacks it."},
+        {"id": "c", "text": "Request JSON in prose and repair syntax with regex", "rationale": "Text parsing is less reliable than schema-constrained tool output."},
+        {"id": "d", "text": "Retry until a purchase-order number appears", "rationale": "Retries cannot recover information absent from the document."}
+      ], "correct": ["a"], "tags": ["required-missing-field"], "sources": ["ccar-f-guide", "tool-use"]
+    },
+    {
+      "id": "f-4.4", "track": "ccar-f", "domain": "f-d4", "objective": "4.4", "select": 1,
+      "stem": "An extraction is valid JSON but its line items do not add up to the stated total. What is the best correction loop?",
+      "options": [
+        {"id": "a", "text": "Retry the identical prompt silently", "rationale": "A blind retry gives the model no information about what failed."},
+        {"id": "b", "text": "Relax validation so the record is accepted", "rationale": "Suppressing a semantic error pushes bad data downstream."},
+        {"id": "c", "text": "Increase max tokens", "rationale": "The output is complete; token capacity is unrelated to the arithmetic inconsistency."},
+        {"id": "d", "text": "Send the source, failed extraction, and specific validation error", "rationale": "Targeted error feedback gives the model the evidence needed for self-correction."}
+      ], "correct": ["d"], "tags": ["blind-retry"], "sources": ["ccar-f-guide", "tool-use"]
+    },
+    {
+      "id": "f-4.5", "track": "ccar-f", "domain": "f-d4", "objective": "4.5", "select": 1,
+      "stem": "A blocking pre-merge review and an overnight technical-debt report use the synchronous Messages API. Where should Message Batches be introduced?",
+      "options": [
+        {"id": "a", "text": "Both workflows, because batches are cheaper", "rationale": "A batch can take up to its processing window and is unsuitable for a blocking merge gate."},
+        {"id": "b", "text": "The pre-merge check only", "rationale": "The latency-sensitive workflow is the worse fit for asynchronous batching."},
+        {"id": "c", "text": "The overnight report only", "rationale": "The report tolerates delayed completion and can benefit from batch pricing."},
+        {"id": "d", "text": "Neither, because batch results cannot be correlated", "rationale": "custom_id supports reliable request-response correlation."}
+      ], "correct": ["c"], "tags": ["cost-over-latency"], "sources": ["ccar-f-guide", "batching"]
+    },
+    {
+      "id": "f-4.6", "track": "ccar-f", "domain": "f-d4", "objective": "4.6", "select": 1,
+      "stem": "A 14-file change receives deep feedback on early files and superficial, contradictory feedback on later ones. How should review be restructured?",
+      "options": [
+        {"id": "a", "text": "Use the generating session and ask it to reconsider", "rationale": "The same reasoning context makes independent challenge less effective."},
+        {"id": "b", "text": "Run independent per-file passes, then a separate cross-file integration pass", "rationale": "Focused local passes avoid attention dilution, while integration review preserves system-level coverage."},
+        {"id": "c", "text": "Run the same whole-change prompt three times and majority-vote", "rationale": "Broad repeated passes can miss the same issues and suppress intermittent valid findings."},
+        {"id": "d", "text": "Remove half the files from review", "rationale": "Reducing coverage avoids rather than solves the quality problem."}
+      ], "correct": ["b"], "tags": ["attention-dilution"], "sources": ["ccar-f-guide", "claude-code"]
+    },
+    {
+      "id": "f-5.1", "track": "ccar-f", "domain": "f-d5", "objective": "5.1", "select": 1,
+      "stem": "A long support conversation summary turns exact order IDs, dates, and refund amounts into vague phrases. What should the architecture add?",
+      "options": [
+        {"id": "a", "text": "A persistent structured case-facts block carried into each prompt", "rationale": "Separating exact transactional facts from prose summaries preserves critical precision."},
+        {"id": "b", "text": "More frequent free-form summaries", "rationale": "Repeating the same lossy process can compound drift."},
+        {"id": "c", "text": "The full raw transcript forever", "rationale": "Unbounded history wastes context and can worsen position effects."},
+        {"id": "d", "text": "A higher creativity setting", "rationale": "More variation does not preserve exact values."}
+      ], "correct": ["a"], "tags": ["lossy-summary"], "sources": ["ccar-f-guide", "agent-sdk"]
+    },
+    {
+      "id": "f-5.2", "track": "ccar-f", "domain": "f-d5", "objective": "5.2", "select": 1,
+      "stem": "get_customer returns two plausible accounts for the same name. What should the support agent do next?",
+      "options": [
+        {"id": "a", "text": "Choose the account with the most recent order", "rationale": "A heuristic can select the wrong person and creates identity risk."},
+        {"id": "b", "text": "Average information from both accounts", "rationale": "Combining records corrupts identity and transaction data."},
+        {"id": "c", "text": "Retry the same lookup until one result appears", "rationale": "A valid ambiguous result is not a transient failure."},
+        {"id": "d", "text": "Ask for an additional identifier", "rationale": "Clarification resolves ambiguity without guessing or unnecessary escalation."}
+      ], "correct": ["d"], "tags": ["unreliable-heuristic"], "sources": ["ccar-f-guide", "agent-sdk"]
+    },
+    {
+      "id": "f-5.3", "track": "ccar-f", "domain": "f-d5", "objective": "5.3", "select": 1,
+      "stem": "A search subagent times out after finding two useful sources. What should it return to the coordinator?",
+      "options": [
+        {"id": "a", "text": "An empty successful result", "rationale": "This hides both the failure and valuable partial work."},
+        {"id": "b", "text": "Failure type, attempted query, partial results, and possible alternatives", "rationale": "Structured context lets the coordinator retry, reroute, or proceed with an explicit coverage gap."},
+        {"id": "c", "text": "Only the raw timeout exception", "rationale": "An exception alone omits useful evidence and recovery context."},
+        {"id": "d", "text": "A command to terminate every subagent", "rationale": "One recoverable failure should not destroy unrelated progress."}
+      ], "correct": ["b"], "tags": ["generic-error"], "sources": ["ccar-f-guide", "agent-sdk"]
+    },
+    {
+      "id": "f-5.4", "track": "ccar-f", "domain": "f-d5", "objective": "5.4", "select": 1,
+      "stem": "During a long codebase investigation, Claude begins referring to generic patterns instead of classes it inspected earlier. Which response best restores grounded progress?",
+      "options": [
+        {"id": "a", "text": "Ask Claude to remember harder", "rationale": "A prompt cannot recreate details that have degraded or left useful context."},
+        {"id": "b", "text": "Read the entire repository into the main conversation", "rationale": "More unfiltered context intensifies attention and capacity problems."},
+        {"id": "c", "text": "Persist key findings in a scratchpad and delegate bounded exploration", "rationale": "Structured external state and isolated subagent output preserve evidence across long phases."},
+        {"id": "d", "text": "Restart without any summary", "rationale": "A blank restart discards durable findings and forces unnecessary rediscovery."}
+      ], "correct": ["c"], "tags": ["context-degradation"], "sources": ["ccar-f-guide", "claude-code"]
+    },
+    {
+      "id": "f-5.5", "track": "ccar-f", "domain": "f-d5", "objective": "5.5", "select": 1,
+      "stem": "An extractor reports 97% overall accuracy, but one rare document type may perform poorly. What evidence is needed before reducing human review?",
+      "options": [
+        {"id": "a", "text": "Accuracy by document type and field, plus stratified samples of high-confidence output", "rationale": "Segmented evaluation exposes masked weaknesses and sampling detects confident novel errors."},
+        {"id": "b", "text": "A higher aggregate score from the same test mix", "rationale": "Another aggregate can still hide the rare segment."},
+        {"id": "c", "text": "The model's uncalibrated confidence statement", "rationale": "Self-reported confidence must be calibrated against labeled outcomes."},
+        {"id": "d", "text": "Only examples routed to low-confidence review", "rationale": "Low-confidence review cannot measure errors among supposedly safe high-confidence cases."}
+      ], "correct": ["a"], "tags": ["aggregate-metric"], "sources": ["ccar-f-guide"]
+    },
+    {
+      "id": "f-5.6", "track": "ccar-f", "domain": "f-d5", "objective": "5.6", "select": 1,
+      "stem": "Two credible reports give different market-size figures collected in different years. How should a synthesis pipeline handle them?",
+      "options": [
+        {"id": "a", "text": "Choose the larger number because it is more recent-looking", "rationale": "Magnitude is not evidence of recency or correctness."},
+        {"id": "b", "text": "Average the values and omit the disagreement", "rationale": "Averaging destroys methodological and temporal meaning."},
+        {"id": "c", "text": "Ask the synthesis model to select whichever seems credible", "rationale": "Ungrounded selection discards source-level uncertainty."},
+        {"id": "d", "text": "Preserve claim-source mappings, collection dates, and the explicit conflict", "rationale": "Attribution and temporal metadata let readers interpret both values accurately."}
+      ], "correct": ["d"], "tags": ["lost-provenance"], "sources": ["ccar-f-guide"]
+    }
+  ]
+}

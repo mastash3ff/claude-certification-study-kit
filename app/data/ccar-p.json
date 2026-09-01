@@ -1,0 +1,384 @@
+{
+  "questions": [
+    {
+      "id": "p-1.1", "track": "ccar-p", "domain": "p-d1", "objective": "1.1", "select": 1,
+      "stem": "A sponsor asks for 'an AI assistant that summarizes everything' but cannot name users, decisions, or success measures. What should the architect do first?",
+      "options": [
+        {"id": "a", "text": "Choose the largest Claude model and build a demo", "rationale": "Model selection is premature before the business problem and constraints are known."},
+        {"id": "b", "text": "Run discovery to identify users, decisions, current costs, risks, and measurable outcomes", "rationale": "Architecture begins by translating an ambiguous request into a testable business problem."},
+        {"id": "c", "text": "Create a multi-agent architecture to cover every possible use case", "rationale": "Broad capability increases complexity without validated demand."},
+        {"id": "d", "text": "Promise a productivity percentage based on industry averages", "rationale": "An unsupported target is not an organization-specific baseline or requirement."}
+      ], "correct": ["b"], "tags": ["solution-before-problem"], "sources": ["ccar-p-guide"]
+    },
+    {
+      "id": "p-1.2", "track": "ccar-p", "domain": "p-d1", "objective": "1.2", "select": 1,
+      "stem": "A document-review solution defines ingestion and model inference but nothing after a draft is produced. What major architectural element is missing?",
+      "options": [
+        {"id": "a", "text": "A second user interface theme", "rationale": "Presentation styling does not complete the system lifecycle."},
+        {"id": "b", "text": "A larger context window", "rationale": "Capacity does not define validation, delivery, or learning."},
+        {"id": "c", "text": "Output validation, user feedback capture, monitoring, and an improvement loop", "rationale": "An end-to-end architecture must carry output through acceptance, operation, and feedback."},
+        {"id": "d", "text": "More few-shot examples only", "rationale": "Prompt examples cannot replace downstream controls and lifecycle feedback."}
+      ], "correct": ["c"], "tags": ["incomplete-lifecycle"], "sources": ["ccar-p-guide"]
+    },
+    {
+      "id": "p-1.3", "track": "ccar-p", "domain": "p-d1", "objective": "1.3", "select": 1,
+      "stem": "An invoice process always performs OCR, validates eight fixed fields, checks totals, then routes exceptions. The steps and branches are stable. Which pattern is proportionate?",
+      "options": [
+        {"id": "a", "text": "A deterministic workflow with Claude used only where interpretation is needed", "rationale": "A stable process benefits from explicit orchestration and bounded model decisions."},
+        {"id": "b", "text": "A fully autonomous agent choosing every next step", "rationale": "Open-ended autonomy adds uncertainty without a need for dynamic planning."},
+        {"id": "c", "text": "A five-agent debate for every invoice", "rationale": "Consensus adds latency and cost to a predictable task."},
+        {"id": "d", "text": "One prompt that performs all processing without validation", "rationale": "A monolithic prompt hides controls and failure boundaries."}
+      ], "correct": ["a"], "tags": ["unnecessary-agent"], "sources": ["ccar-p-guide", "agent-sdk"]
+    },
+    {
+      "id": "p-1.4", "track": "ccar-p", "domain": "p-d1", "objective": "1.4", "select": 1,
+      "stem": "A research product needs specialist retrieval, analysis, and synthesis while retaining traceability and one place for recovery decisions. Which design best fits?",
+      "options": [
+        {"id": "a", "text": "Let specialists message each other freely", "rationale": "Peer-to-peer routing weakens consistent tracing and centralized recovery."},
+        {"id": "b", "text": "Give one agent every tool and responsibility", "rationale": "A monolith increases context and tool-selection load."},
+        {"id": "c", "text": "Use independent agents with no shared evidence contract", "rationale": "Without structured handoffs, synthesis loses provenance and failure context."},
+        {"id": "d", "text": "Use a coordinator with scoped specialists and structured handoffs", "rationale": "The coordinator owns decomposition, routing, aggregation, observability, and recovery."}
+      ], "correct": ["d"], "tags": ["uncontrolled-orchestration"], "sources": ["ccar-p-guide", "agent-sdk"]
+    },
+    {
+      "id": "p-1.5", "track": "ccar-p", "domain": "p-d1", "objective": "1.5", "select": 1,
+      "stem": "A team must improve a failing RAG system but does not know whether ingestion, indexing, retrieval, or generation is responsible. What decomposition is strongest?",
+      "options": [
+        {"id": "a", "text": "Change the prompt and model together, then compare anecdotes", "rationale": "Multiple simultaneous changes prevent causal diagnosis."},
+        {"id": "b", "text": "Measure each stage separately, isolate the failing boundary, then refine it", "rationale": "Stage-level decomposition makes the fault and improvement attributable."},
+        {"id": "c", "text": "Replace the entire pipeline with a larger model", "rationale": "Replacement skips root-cause evidence and may preserve retrieval defects."},
+        {"id": "d", "text": "Add more documents to the index", "rationale": "More data can worsen retrieval and does not identify the failing stage."}
+      ], "correct": ["b"], "tags": ["multiple-variables"], "sources": ["ccar-p-guide"]
+    },
+    {
+      "id": "p-1.6", "track": "ccar-p", "domain": "p-d1", "objective": "1.6", "select": 1,
+      "stem": "A proposed assistant saves analyst time but its 95th-percentile latency exceeds the contractual response target. How should the design decision be framed?",
+      "options": [
+        {"id": "a", "text": "Approve it because productivity always outweighs latency", "rationale": "Business value does not erase a committed service constraint."},
+        {"id": "b", "text": "Reject all AI because one design misses the SLA", "rationale": "A failed design does not prove the use case is impossible."},
+        {"id": "c", "text": "Compare alternatives against quantified value, cost, quality, and latency requirements", "rationale": "Architecture should connect technical trade-offs to the agreed value pillars and SLA."},
+        {"id": "d", "text": "Hide tail latency by reporting only the average", "rationale": "An average conceals the metric the contract actually governs."}
+      ], "correct": ["c"], "tags": ["single-metric"], "sources": ["ccar-p-guide"]
+    },
+    {
+      "id": "p-2.1", "track": "ccar-p", "domain": "p-d2", "objective": "2.1", "select": 1,
+      "stem": "A high-volume intent classifier has short inputs, strict latency, and a measured quality threshold that a smaller Claude model already meets. Which selection is defensible?",
+      "options": [
+        {"id": "a", "text": "Always use the largest model because accuracy is important", "rationale": "Model choice should be evidence-based, not tier-based."},
+        {"id": "b", "text": "Use the smallest model that meets measured quality and latency targets", "rationale": "This satisfies the task while controlling cost and response time."},
+        {"id": "c", "text": "Choose models by marketing name rather than evaluation", "rationale": "Names do not establish fit for the workload."},
+        {"id": "d", "text": "Randomly route requests across all models", "rationale": "Uncontrolled routing makes quality, cost, and incident analysis inconsistent."}
+      ], "correct": ["b"], "tags": ["largest-model-default"], "sources": ["ccar-p-guide", "models"]
+    },
+    {
+      "id": "p-2.2", "track": "ccar-p", "domain": "p-d2", "objective": "2.2", "select": 1,
+      "stem": "A system prompt says an agent must never approve payments above $10,000. The action is financially irreversible. What is the correct architecture?",
+      "options": [
+        {"id": "a", "text": "Use the prompt as the only guardrail", "rationale": "Prompt compliance is probabilistic and cannot be the authorization boundary."},
+        {"id": "b", "text": "Repeat the limit in every user message", "rationale": "Repetition does not create deterministic enforcement."},
+        {"id": "c", "text": "Enforce the limit in code and retain the prompt as behavioral guidance", "rationale": "Programmatic authorization provides the guarantee; the prompt explains desired behavior."},
+        {"id": "d", "text": "Use a more capable model without an external control", "rationale": "Model capability cannot guarantee a financial policy."}
+      ], "correct": ["c"], "tags": ["prompt-only-guardrail"], "sources": ["ccar-p-guide", "tool-use"]
+    },
+    {
+      "id": "p-2.3", "track": "ccar-p", "domain": "p-d2", "objective": "2.3", "select": 1,
+      "stem": "A support classifier handles common labels but confuses two rare, semantically similar categories. What prompt technique should be tried first?",
+      "options": [
+        {"id": "a", "text": "Remove all category definitions", "rationale": "Less guidance makes an already subtle boundary harder."},
+        {"id": "b", "text": "Add targeted few-shot examples that contrast the two categories", "rationale": "Contrastive examples demonstrate the exact decision boundary the model is missing."},
+        {"id": "c", "text": "Ask for an unrestricted chain of thought in the output", "rationale": "Exposed reasoning is not required and does not supply missing category evidence."},
+        {"id": "d", "text": "Increase the number of unrelated examples", "rationale": "Unrelated examples add tokens without clarifying the confusion."}
+      ], "correct": ["b"], "tags": ["untargeted-prompting"], "sources": ["ccar-p-guide", "prompting"]
+    },
+    {
+      "id": "p-2.4", "track": "ccar-p", "domain": "p-d2", "objective": "2.4", "select": 1,
+      "stem": "Every request includes 200 pages of policy, although most questions touch one section. Cost rises and answers miss middle passages. What should change?",
+      "options": [
+        {"id": "a", "text": "Add the policy twice so important text appears again", "rationale": "Duplication raises token use and does not target the relevant passage."},
+        {"id": "b", "text": "Retrieve relevant sections and retain stable critical instructions separately", "rationale": "Selective context reduces noise while preserving required global constraints."},
+        {"id": "c", "text": "Increase output tokens", "rationale": "Output capacity does not improve oversized input relevance."},
+        {"id": "d", "text": "Remove policy context entirely", "rationale": "Eliminating grounding sacrifices correctness and compliance."}
+      ], "correct": ["b"], "tags": ["monolithic-context"], "sources": ["ccar-p-guide", "prompt-caching"]
+    },
+    {
+      "id": "p-2.5", "track": "ccar-p", "domain": "p-d2", "objective": "2.5", "select": 2,
+      "stem": "A team repeatedly sends the same policy prefix and also repeats a complex review workflow across projects. Which TWO reuse mechanisms fit?",
+      "options": [
+        {"id": "a", "text": "Put stable prefix content first and use prompt caching", "rationale": "Caching reuses repeated leading content to reduce latency and cost."},
+        {"id": "b", "text": "Randomize policy order on every call", "rationale": "Changing the prefix prevents effective reuse."},
+        {"id": "c", "text": "Package the repeatable workflow as a maintained Skill", "rationale": "A Skill makes reusable task instructions and resources modular."},
+        {"id": "d", "text": "Copy the workflow manually into every prompt", "rationale": "Manual duplication creates drift and wastes context."}
+      ], "correct": ["a", "c"], "tags": ["duplicate-context"], "sources": ["ccar-p-guide", "prompt-caching", "claude-code"]
+    },
+    {
+      "id": "p-3.1", "track": "ccar-p", "domain": "p-d3", "objective": "3.1", "select": 1,
+      "stem": "A customer-support agent can read tickets, draft replies, issue refunds, and delete accounts, although staff only need the first two actions. What is the best risk reduction?",
+      "options": [
+        {"id": "a", "text": "Log refund and delete calls", "rationale": "Logging observes misuse after capability remains available."},
+        {"id": "b", "text": "Remove refund and delete tools from the agent", "rationale": "Eliminating unnecessary capability applies least privilege at the configuration boundary."},
+        {"id": "c", "text": "Add a confirmation prompt before dangerous calls", "rationale": "A confirmation is weaker than removing tools the role never needs."},
+        {"id": "d", "text": "Use a larger model to reduce accidental use", "rationale": "Model size is not an authorization mechanism."}
+      ], "correct": ["b"], "tags": ["compensating-control"], "sources": ["ccar-p-guide", "tool-use"]
+    },
+    {
+      "id": "p-3.2", "track": "ccar-p", "domain": "p-d3", "objective": "3.2", "select": 1,
+      "stem": "A shared service account calls a records tool for every user, and the backend cannot tell which employee initiated a request. What gap must be fixed?",
+      "options": [
+        {"id": "a", "text": "Add a friendlier tool description", "rationale": "Description quality does not establish caller identity or permissions."},
+        {"id": "b", "text": "Increase model context", "rationale": "Context size does not enforce backend authorization."},
+        {"id": "c", "text": "Propagate authenticated user identity and authorize each operation server-side", "rationale": "The backend must evaluate the actual principal and requested resource."},
+        {"id": "d", "text": "Trust the model to refuse unauthorized requests", "rationale": "Prompt behavior cannot replace identity-aware access control."}
+      ], "correct": ["c"], "tags": ["confused-deputy"], "sources": ["ccar-p-guide", "mcp"]
+    },
+    {
+      "id": "p-3.3", "track": "ccar-p", "domain": "p-d3", "objective": "3.3", "select": 1,
+      "stem": "A legal assistant needs fast routine answers but must spend more time on ambiguous high-risk clauses. Which configuration best balances latency and accuracy?",
+      "options": [
+        {"id": "a", "text": "Use the slowest path for every request", "rationale": "Uniform maximum effort wastes latency on simple work."},
+        {"id": "b", "text": "Use the fastest path for every request", "rationale": "Uniform minimum effort underserves high-risk ambiguity."},
+        {"id": "c", "text": "Route by measured complexity and risk, with escalation for uncertain cases", "rationale": "Conditional routing spends quality budget where the business risk justifies it."},
+        {"id": "d", "text": "Let each user choose a model name", "rationale": "Users should express needs; architecture should enforce evaluated service levels."}
+      ], "correct": ["c"], "tags": ["uniform-routing"], "sources": ["ccar-p-guide", "models"]
+    },
+    {
+      "id": "p-3.4", "track": "ccar-p", "domain": "p-d3", "objective": "3.4", "select": 1,
+      "stem": "A multi-agent request crosses an API gateway, coordinator, two tools, and a retriever. Operators cannot explain a slow or wrong answer. What observability design is most useful?",
+      "options": [
+        {"id": "a", "text": "Only record the final response text", "rationale": "Final output cannot identify which stage caused latency or quality loss."},
+        {"id": "b", "text": "Trace one correlation ID across model calls, tool calls, retrieval, timing, and outcomes", "rationale": "End-to-end traces make stage-level behavior attributable at scale."},
+        {"id": "c", "text": "Enable verbose logs without structure or retention rules", "rationale": "Volume without correlation makes investigation harder and can expose sensitive data."},
+        {"id": "d", "text": "Ask users to reproduce every incident manually", "rationale": "Manual reproduction is unreliable for distributed production failures."}
+      ], "correct": ["b"], "tags": ["uncorrelated-logs"], "sources": ["ccar-p-guide"]
+    },
+    {
+      "id": "p-3.5", "track": "ccar-p", "domain": "p-d3", "objective": "3.5", "select": 1,
+      "stem": "A RAG index splits contracts every 500 characters, often separating a clause heading from its exceptions. Which redesign is best?",
+      "options": [
+        {"id": "a", "text": "Use structure-aware chunks that preserve sections, with measured overlap where needed", "rationale": "Chunking should reflect document semantics and keep dependent text retrievable together."},
+        {"id": "b", "text": "Make chunks even smaller without evaluation", "rationale": "Smaller arbitrary chunks further fragment meaning."},
+        {"id": "c", "text": "Index only headings", "rationale": "Headings alone omit the clause content needed to answer."},
+        {"id": "d", "text": "Send the entire corpus on every request", "rationale": "Monolithic context is costly and weakens relevance."}
+      ], "correct": ["a"], "tags": ["arbitrary-chunking"], "sources": ["ccar-p-guide"]
+    },
+    {
+      "id": "p-3.6", "track": "ccar-p", "domain": "p-d3", "objective": "3.6", "select": 1,
+      "stem": "Users search a product catalog by exact SKU as often as by natural-language need. Which retrieval approach best matches both query shapes?",
+      "options": [
+        {"id": "a", "text": "Dense semantic retrieval only", "rationale": "Embeddings may underperform on exact identifiers."},
+        {"id": "b", "text": "Keyword lookup only", "rationale": "Lexical matching misses semantic descriptions and paraphrases."},
+        {"id": "c", "text": "Hybrid lexical and semantic retrieval with metadata filters", "rationale": "Hybrid retrieval covers exact identifiers and meaning-based discovery."},
+        {"id": "d", "text": "Choose a result randomly when methods disagree", "rationale": "Random resolution is not an evaluated fusion strategy."}
+      ], "correct": ["c"], "tags": ["single-retriever"], "sources": ["ccar-p-guide"]
+    },
+    {
+      "id": "p-3.7", "track": "ccar-p", "domain": "p-d3", "objective": "3.7", "select": 1,
+      "stem": "Several Claude clients need a standard, discoverable interface to the same internal tools and resources. Which integration mechanism is the natural fit?",
+      "options": [
+        {"id": "a", "text": "Model Context Protocol server", "rationale": "MCP standardizes tool and resource discovery across compatible clients."},
+        {"id": "b", "text": "A human-run CLI command copied into prompts", "rationale": "Manual CLI instructions are not a discoverable shared agent interface."},
+        {"id": "c", "text": "Agent-to-agent messaging for a deterministic database lookup", "rationale": "A separate agent adds autonomy where a tool contract suffices."},
+        {"id": "d", "text": "A bespoke prompt format per client", "rationale": "Per-client conventions duplicate integration work and drift."}
+      ], "correct": ["a"], "tags": ["protocol-mismatch"], "sources": ["ccar-p-guide", "mcp"]
+    },
+    {
+      "id": "p-3.8", "track": "ccar-p", "domain": "p-d3", "objective": "3.8", "select": 1,
+      "stem": "An enterprise catalog exposes thousands of tools, but a request typically needs three. Sending every schema each turn overwhelms context. What should the architecture do?",
+      "options": [
+        {"id": "a", "text": "Load all schemas and increase the context window", "rationale": "Capacity does not remove irrelevant choice complexity or token cost."},
+        {"id": "b", "text": "Use progressive discovery to identify and load only relevant capabilities", "rationale": "Discovery keeps initial context small and expands the tool set on demand."},
+        {"id": "c", "text": "Remove descriptions so schemas are shorter", "rationale": "Tool selection becomes less reliable without clear descriptions."},
+        {"id": "d", "text": "Give users raw access to choose internal tools", "rationale": "User exposure does not solve agent context and governance concerns."}
+      ], "correct": ["b"], "tags": ["monolithic-capability-context"], "sources": ["ccar-p-guide", "mcp"]
+    },
+    {
+      "id": "p-4.1", "track": "ccar-p", "domain": "p-d4", "objective": "4.1", "select": 1,
+      "stem": "A support assistant reduces handle time but sometimes gives unsafe refund advice. Which evaluation set is decision-useful?",
+      "options": [
+        {"id": "a", "text": "Average response length only", "rationale": "Length does not measure business quality, safety, latency, or cost."},
+        {"id": "b", "text": "Accuracy only", "rationale": "Correctness alone can hide safety and operational failures."},
+        {"id": "c", "text": "Task success, safety violations, latency, cost, and escalation quality", "rationale": "The metrics cover user value and the primary production constraints."},
+        {"id": "d", "text": "User compliments collected informally", "rationale": "Anecdotes are biased and do not measure failure rates."}
+      ], "correct": ["c"], "tags": ["single-metric"], "sources": ["ccar-p-guide"]
+    },
+    {
+      "id": "p-4.2", "track": "ccar-p", "domain": "p-d4", "objective": "4.2", "select": 1,
+      "stem": "A team evaluates an agent only on 20 hand-picked easy examples. What is the best replacement?",
+      "options": [
+        {"id": "a", "text": "A representative labeled set with normal, edge, adversarial, and production-sampled cases", "rationale": "Mixed methods and representative cases expose both routine quality and failure behavior."},
+        {"id": "b", "text": "More examples chosen by the same developer for convenience", "rationale": "Increasing a biased sample does not make it representative."},
+        {"id": "c", "text": "Only synthetic examples generated by the system under test", "rationale": "A single generator can reproduce its own blind spots."},
+        {"id": "d", "text": "No offline set; rely solely on complaints", "rationale": "Production incidents are late, sparse, and unsafe as the only evaluation."}
+      ], "correct": ["a"], "tags": ["convenience-sample"], "sources": ["ccar-p-guide"]
+    },
+    {
+      "id": "p-4.3", "track": "ccar-p", "domain": "p-d4", "objective": "4.3", "select": 1,
+      "stem": "A new prompt appears better in demos. How should the team decide whether to adopt it?",
+      "options": [
+        {"id": "a", "text": "Replace the old prompt immediately", "rationale": "Demo impressions do not establish consistent production improvement."},
+        {"id": "b", "text": "Compare both versions on the same evaluation set and controlled traffic", "rationale": "A controlled A/B design isolates the prompt change against agreed metrics."},
+        {"id": "c", "text": "Change the prompt, model, and retriever together", "rationale": "Bundled changes prevent attribution of gains or regressions."},
+        {"id": "d", "text": "Ask the prompt author which version is best", "rationale": "Author preference is not outcome evidence."}
+      ], "correct": ["b"], "tags": ["anecdotal-evaluation"], "sources": ["ccar-p-guide"]
+    },
+    {
+      "id": "p-4.4", "track": "ccar-p", "domain": "p-d4", "objective": "4.4", "select": 1,
+      "stem": "After a document refresh, a RAG assistant becomes confidently wrong while the model and latency remain unchanged. What should be investigated first?",
+      "options": [
+        {"id": "a", "text": "Retrieval and indexing for stale or irrelevant chunks", "rationale": "The failure began with a corpus refresh, directly implicating the grounding pipeline."},
+        {"id": "b", "text": "The model weights", "rationale": "The model version is unchanged and the timing points to refreshed data."},
+        {"id": "c", "text": "Output token limit", "rationale": "Confident wrong answers are not evidence of truncation."},
+        {"id": "d", "text": "User interface color settings", "rationale": "Presentation has no causal link to retrieved evidence."}
+      ], "correct": ["a"], "tags": ["wrong-component"], "sources": ["ccar-p-guide"]
+    },
+    {
+      "id": "p-4.5", "track": "ccar-p", "domain": "p-d4", "objective": "4.5", "select": 2,
+      "stem": "A nightly classification job uses a premium model and repeats a large static prefix. Quality tests show a smaller model still meets the threshold. Which TWO optimizations are justified?",
+      "options": [
+        {"id": "a", "text": "Route the job to the evaluated smaller model", "rationale": "Measured task fit supports reducing cost without sacrificing the quality target."},
+        {"id": "b", "text": "Remove validation to save processing time", "rationale": "Dropping quality controls changes the risk posture rather than optimizing execution."},
+        {"id": "c", "text": "Cache the stable prompt prefix", "rationale": "Prompt caching reduces repeated prefix processing cost and latency."},
+        {"id": "d", "text": "Truncate inputs arbitrarily", "rationale": "Unmeasured information loss can lower task quality."}
+      ], "correct": ["a", "c"], "tags": ["unmeasured-cost-cut"], "sources": ["ccar-p-guide", "models", "prompt-caching"]
+    },
+    {
+      "id": "p-4.6", "track": "ccar-p", "domain": "p-d4", "objective": "4.6", "select": 1,
+      "stem": "Offline evaluations passed, but production quality slowly declines as customer queries change. What monitoring closes this gap?",
+      "options": [
+        {"id": "a", "text": "Track only service uptime", "rationale": "A healthy endpoint can still return poor answers."},
+        {"id": "b", "text": "Monitor quality samples, input drift, latency, cost, safety events, and user outcomes", "rationale": "Production observability must cover behavior and changing workload, not only availability."},
+        {"id": "c", "text": "Rerun the original easy examples once a year", "rationale": "A static sparse check will not detect current query drift."},
+        {"id": "d", "text": "Wait for a major customer complaint", "rationale": "Complaints are a lagging and incomplete signal."}
+      ], "correct": ["b"], "tags": ["availability-only"], "sources": ["ccar-p-guide"]
+    },
+    {
+      "id": "p-5.1", "track": "ccar-p", "domain": "p-d5", "objective": "5.1", "select": 1,
+      "stem": "A tool-using agent processes untrusted input and can modify records. Which safety architecture is strongest?",
+      "options": [
+        {"id": "a", "text": "One system-prompt warning", "rationale": "A single probabilistic instruction is not a complete safety stack."},
+        {"id": "b", "text": "Layer input checks, scoped tools, server-side authorization, output checks, and incident telemetry", "rationale": "Independent controls cover prevention, enforcement, detection, and response at the right boundaries."},
+        {"id": "c", "text": "Let the model approve its own exceptional actions", "rationale": "Self-approval does not create independent control."},
+        {"id": "d", "text": "Log actions but keep unrestricted capability", "rationale": "Detection alone leaves unnecessary attack surface and irreversible risk."}
+      ], "correct": ["b"], "tags": ["single-control"], "sources": ["ccar-p-guide", "tool-use"]
+    },
+    {
+      "id": "p-5.2", "track": "ccar-p", "domain": "p-d5", "objective": "5.2", "select": 1,
+      "stem": "Before deployment, a team lists hallucination but ignores prompt injection, data leakage, tool misuse, dependency failure, and operator error. What should happen?",
+      "options": [
+        {"id": "a", "text": "Approve because hallucination is the only model-specific risk", "rationale": "The system has broader technical and operational failure modes."},
+        {"id": "b", "text": "Create a threat and failure model covering components, actors, impact, controls, and residual risk", "rationale": "Systematic analysis makes risks explicit and ties them to mitigations and ownership."},
+        {"id": "c", "text": "Add a disclaimer to every answer", "rationale": "A disclaimer does not prevent unauthorized actions or data exposure."},
+        {"id": "d", "text": "Transfer all responsibility to users", "rationale": "User responsibility does not remove the provider's design obligations."}
+      ], "correct": ["b"], "tags": ["narrow-risk-model"], "sources": ["ccar-p-guide"]
+    },
+    {
+      "id": "p-5.3", "track": "ccar-p", "domain": "p-d5", "objective": "5.3", "select": 1,
+      "stem": "A loan assistant may recommend cases, but denial is high-impact and difficult to reverse. Where should human review sit?",
+      "options": [
+        {"id": "a", "text": "After denial, only if the customer complains", "rationale": "Review after harm is a weak control for an irreversible decision."},
+        {"id": "b", "text": "Before denial, with evidence and reasons presented to an authorized reviewer", "rationale": "Human approval belongs before high-impact action and needs decision-relevant context."},
+        {"id": "c", "text": "Only for cases where the model says it is uncertain", "rationale": "Uncalibrated self-confidence can miss confidently wrong high-impact cases."},
+        {"id": "d", "text": "Nowhere if aggregate accuracy is high", "rationale": "Aggregate performance does not remove individual impact or governance requirements."}
+      ], "correct": ["b"], "tags": ["review-after-action"], "sources": ["ccar-p-guide"]
+    },
+    {
+      "id": "p-5.4", "track": "ccar-p", "domain": "p-d5", "objective": "5.4", "select": 1,
+      "stem": "A healthcare design mentions HIPAA but has no data-flow map, control owner, retention rule, or audit evidence. What is the next architectural step?",
+      "options": [
+        {"id": "a", "text": "Add the word compliant to the architecture diagram", "rationale": "A label is not a control or evidence of implementation."},
+        {"id": "b", "text": "Map regulated data and obligations to named controls, owners, and evidence artifacts", "rationale": "Compliance becomes actionable only when each obligation is tied to enforceable design and proof."},
+        {"id": "c", "text": "Assume the cloud provider covers every responsibility", "rationale": "Shared-responsibility boundaries leave application and organizational duties."},
+        {"id": "d", "text": "Remove monitoring to reduce stored data", "rationale": "Eliminating auditability can create a new compliance and incident-response gap."}
+      ], "correct": ["b"], "tags": ["compliance-label"], "sources": ["ccar-p-guide"]
+    },
+    {
+      "id": "p-5.5", "track": "ccar-p", "domain": "p-d5", "objective": "5.5", "select": 1,
+      "stem": "An assistant's overall approval recommendation accuracy is high, but performance has not been measured across demographic groups. What is required?",
+      "options": [
+        {"id": "a", "text": "Publish the overall number as proof of fairness", "rationale": "Aggregate accuracy can hide disparate errors."},
+        {"id": "b", "text": "Evaluate outcomes and error rates by relevant groups, document limits, and mitigate disparities", "rationale": "Subgroup evidence and transparent limitations are necessary for fairness assessment."},
+        {"id": "c", "text": "Ask the model whether it is biased", "rationale": "Self-assessment is not an empirical fairness evaluation."},
+        {"id": "d", "text": "Hide model involvement from affected users", "rationale": "Concealment undermines transparency and accountability."}
+      ], "correct": ["b"], "tags": ["aggregate-fairness"], "sources": ["ccar-p-guide"]
+    },
+    {
+      "id": "p-6.1", "track": "ccar-p", "domain": "p-d6", "objective": "6.1", "select": 1,
+      "stem": "Operations wants automation, legal wants review, and finance wants a fixed budget. What discovery output best supports design?",
+      "options": [
+        {"id": "a", "text": "A list of desired AI features", "rationale": "Features alone omit process, constraints, decision rights, and success measures."},
+        {"id": "b", "text": "A shared problem statement with actors, workflow, constraints, risks, baseline, and acceptance criteria", "rationale": "Structured discovery reconciles stakeholder needs into design inputs."},
+        {"id": "c", "text": "The architect's preferred reference architecture", "rationale": "A preferred pattern should not substitute for gathered requirements."},
+        {"id": "d", "text": "A promise to satisfy every request without trade-offs", "rationale": "Conflicting constraints require explicit prioritization."}
+      ], "correct": ["b"], "tags": ["feature-list-discovery"], "sources": ["ccar-p-guide"]
+    },
+    {
+      "id": "p-6.2", "track": "ccar-p", "domain": "p-d6", "objective": "6.2", "select": 1,
+      "stem": "An executive must choose between a cheaper architecture with slower recovery and a costlier resilient design. How should the architect present the decision?",
+      "options": [
+        {"id": "a", "text": "Recommend one without discussing disadvantages", "rationale": "A recommendation without concessions prevents informed approval."},
+        {"id": "b", "text": "Lead with business impact, compare benefits and concessions, state residual risk and reversal cost", "rationale": "Decision-makers need consequences, not only technical components."},
+        {"id": "c", "text": "Show only a dense infrastructure diagram", "rationale": "Implementation detail alone does not frame the business choice."},
+        {"id": "d", "text": "Let the vendor select the design", "rationale": "The architect remains accountable for organizational trade-offs."}
+      ], "correct": ["b"], "tags": ["tradeoff-omission"], "sources": ["ccar-p-guide"]
+    },
+    {
+      "id": "p-6.3", "track": "ccar-p", "domain": "p-d6", "objective": "6.3", "select": 1,
+      "stem": "A stakeholder expects instant answers and near-perfect accuracy, but tests show the target requires slower multi-pass review. What should the architect do?",
+      "options": [
+        {"id": "a", "text": "Promise both and optimize after launch", "rationale": "An infeasible commitment creates predictable SLA failure."},
+        {"id": "b", "text": "Present measured options and agree on latency, quality, escalation, and cost targets", "rationale": "Explicit feedback and negotiated SLAs align expectations to observed trade-offs."},
+        {"id": "c", "text": "Hide evaluation results to preserve enthusiasm", "rationale": "Concealing constraints prevents informed sponsorship."},
+        {"id": "d", "text": "Cancel the project without discussing alternatives", "rationale": "Different service tiers or workflow designs may satisfy the business need."}
+      ], "correct": ["b"], "tags": ["unrealistic-expectation"], "sources": ["ccar-p-guide"]
+    },
+    {
+      "id": "p-6.4", "track": "ccar-p", "domain": "p-d6", "objective": "6.4", "select": 1,
+      "stem": "Six months after handoff, a team cannot explain why MCP was selected over a direct API or which risks were accepted. What documentation was missing?",
+      "options": [
+        {"id": "a", "text": "An architecture decision record with options, criteria, decision, consequences, and owners", "rationale": "An ADR preserves the reasoning needed to operate and revisit the choice."},
+        {"id": "b", "text": "More screenshots of the user interface", "rationale": "UI images do not capture integration reasoning or accepted risk."},
+        {"id": "c", "text": "A transcript of every design meeting", "rationale": "Raw meetings are difficult to use and do not replace a durable decision record."},
+        {"id": "d", "text": "Only the final component diagram", "rationale": "A diagram shows what exists, not why alternatives were rejected."}
+      ], "correct": ["a"], "tags": ["missing-rationale"], "sources": ["ccar-p-guide"]
+    },
+    {
+      "id": "p-6.5", "track": "ccar-p", "domain": "p-d6", "objective": "6.5", "select": 1,
+      "stem": "A pilot works, but production ownership, monitoring response, retraining triggers, and feedback triage are undefined. What must happen before launch?",
+      "options": [
+        {"id": "a", "text": "Launch and assign owners after the first incident", "rationale": "Undefined ownership turns expected operational work into an incident."},
+        {"id": "b", "text": "Define owners, runbooks, monitors, feedback loops, change gates, and iteration cadence", "rationale": "Lifecycle responsibilities must survive discovery, handoff, operation, and improvement."},
+        {"id": "c", "text": "Make the architect the permanent operator for every component", "rationale": "A design that depends on one person has not been successfully handed off."},
+        {"id": "d", "text": "Freeze the system permanently after pilot approval", "rationale": "Models, data, requirements, and risks change over the credential and product lifecycle."}
+      ], "correct": ["b"], "tags": ["pilot-to-production-gap"], "sources": ["ccar-p-guide"]
+    },
+    {
+      "id": "p-7.1", "track": "ccar-p", "domain": "p-d7", "objective": "7.1", "select": 1,
+      "stem": "Every developer has different Claude Code conventions and tool access because setup lives only in personal files. What should the team establish?",
+      "options": [
+        {"id": "a", "text": "Versioned project configuration with shared instructions, scoped tools, and documented personal overrides", "rationale": "A common project baseline creates repeatable team behavior while preserving explicit user customization."},
+        {"id": "b", "text": "A verbal setup walkthrough with no repository files", "rationale": "Manual instructions drift and are not auditable."},
+        {"id": "c", "text": "One shared credential committed for convenience", "rationale": "Shared secrets destroy accountability and create exposure."},
+        {"id": "d", "text": "No configuration so Claude can adapt freely", "rationale": "Unmanaged defaults undermine team consistency and governance."}
+      ], "correct": ["a"], "tags": ["personal-only-config"], "sources": ["ccar-p-guide", "claude-code"]
+    },
+    {
+      "id": "p-7.2", "track": "ccar-p", "domain": "p-d7", "objective": "7.2", "select": 1,
+      "stem": "A team bought an AI coding tool, but developers avoid it because suggestions duplicate tests and ignore repository conventions. What enablement is highest leverage?",
+      "options": [
+        {"id": "a", "text": "Mandate daily usage without changing setup", "rationale": "A mandate does not fix low-value output."},
+        {"id": "b", "text": "Integrate project context, existing tests, focused workflows, examples, and feedback into normal development", "rationale": "Workflow-specific grounding makes assistance relevant and creates an improvement loop."},
+        {"id": "c", "text": "Measure only the number of generated lines", "rationale": "Output volume is not developer value or accepted change quality."},
+        {"id": "d", "text": "Remove human review to make the tool feel faster", "rationale": "Eliminating review increases risk and does not solve poor suggestions."}
+      ], "correct": ["b"], "tags": ["tool-without-workflow"], "sources": ["ccar-p-guide", "claude-code"]
+    },
+    {
+      "id": "p-7.3", "track": "ccar-p", "domain": "p-d7", "objective": "7.3", "select": 1,
+      "stem": "Production answers slow down after a release. Model latency is unchanged, while traces show retrieval now returns ten times more text. What should operations do first?",
+      "options": [
+        {"id": "a", "text": "Scale model capacity without examining retrieval", "rationale": "The trace already identifies a changed upstream payload."},
+        {"id": "b", "text": "Inspect the retrieval change, restore bounded results, and verify end-to-end latency", "rationale": "This targets the measured regression and confirms recovery across the full path."},
+        {"id": "c", "text": "Disable all monitoring because it adds overhead", "rationale": "Removing evidence makes diagnosis and verification harder."},
+        {"id": "d", "text": "Ask users to submit shorter questions", "rationale": "The observed cause is result expansion, not user input length."}
+      ], "correct": ["b"], "tags": ["wrong-component"], "sources": ["ccar-p-guide"]
+    }
+  ]
+}
