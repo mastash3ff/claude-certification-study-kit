@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TrackCard from "../components/TrackCard.astro";
+import { catalog, tracks } from "../lib/catalog";
+import { allQuestions } from "../lib/questions";
+import { sitePath } from "../lib/url";
+---
+<BaseLayout title="Claude Certification Study Kit" description="Independent, objective-mapped study guides and original practice for every current Claude certification.">
+  <section class="hero">
+    <div>
+      <p class="eyebrow">Independent certification catalog</p>
+      <h1>Prepare for the way Claude work is actually tested.</h1>
+      <p class="hero-copy">Four certification tracks, {allQuestions.length} original questions, and domain-by-domain study notes grounded in the published exam blueprints.</p>
+      <a class="button" href={sitePath("/certifications/")}>Choose your certification</a>
+    </div>
+    <div class="hero-note">
+      <strong>Start with a diagnostic.</strong>
+      <p>Use the weighted results to decide what deserves your study time. Scores here are for practice, not a pass prediction.</p>
+      <small>Catalog reviewed {catalog.verifiedAt}</small>
+    </div>
+  </section>
+  <div class="section-head"><div><p class="eyebrow">The catalog</p><h2>One path for each Claude role</h2></div><p>Move from fluent collaboration to production architecture.</p></div>
+  <section class="catalog-grid" aria-label="Certification tracks">
+    {tracks.map((track) => <TrackCard track={track} />)}
+  </section>
+  <section class="callout">
+    <strong>No question dumps.</strong> Every practice question is original and mapped to one published objective. Use official documentation for authoritative product behavior.
+  </section>
+</BaseLayout>

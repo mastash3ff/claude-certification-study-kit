@@ -1,0 +1,7 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { sitePath } from "../lib/url";
+---
+<BaseLayout title="Page not found" description="The requested study page was not found." eyebrow="404">
+  <h1>That page is outside the blueprint.</h1><p class="hero-copy">Return to the catalog and choose a certification track.</p><a class="button" href={sitePath("/certifications/")}>Open the catalog</a>
+</BaseLayout>

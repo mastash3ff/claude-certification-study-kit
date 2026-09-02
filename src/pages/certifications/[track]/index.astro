@@ -1,0 +1,26 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { tracks } from "../../../lib/catalog";
+import { sitePath } from "../../../lib/url";
+
+export function getStaticPaths() { return tracks.map((track) => ({ params: { track: track.slug }, props: { track } })); }
+const { track } = Astro.props;
+const entries = await getCollection("certifications", ({ data }) => data.track === track.id);
+const overview = entries.find(({ data }) => data.kind === "overview");
+if (!overview) throw new Error(`Missing overview for ${track.id}`);
+const { Content } = await render(overview);
+---
+<BaseLayout title={track.shortName} description={track.summary} eyebrow={`${track.code} study track`}>
+  <section class="track-hero">
+    <div><h1>{track.shortName}</h1><p class="hero-copy">{track.summary}</p><a class="button" href={sitePath(`/certifications/${track.slug}/diagnostic/`)}>Take the {track.expectedQuestions}-question diagnostic</a></div>
+    <aside class="fact-sheet" aria-label="Exam facts"><dl>
+      <div><dt>Official exam</dt><dd>{track.examItems} items</dd></div><div><dt>Duration</dt><dd>{track.durationMinutes} minutes</dd></div><div><dt>Published price</dt><dd>${track.priceUsd}</dd></div><div><dt>Validity</dt><dd>{track.validityMonths} months</dd></div><div><dt>Study domains</dt><dd>{track.domains.length}</dd></div>
+    </dl></aside>
+  </section>
+  <div class="section-head"><div><p class="eyebrow">Blueprint</p><h2>Study by weighted domain</h2></div><p>Weights indicate the share of scored exam content, not difficulty.</p></div>
+  <div class="domain-list">
+    {track.domains.map((domain, index) => <a class="domain-row" href={sitePath(`/certifications/${track.slug}/domains/${domain.slug}/`)}><span class="domain-number">{String(index + 1).padStart(2,"0")}</span><span><strong>{domain.name}</strong>{domain.objectives.length} objectives</span><span>{domain.weight}%</span></a>)}
+  </div>
+  <section class="prose"><Content /></section>
+</BaseLayout>

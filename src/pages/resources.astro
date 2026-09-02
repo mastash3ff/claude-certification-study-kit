@@ -1,0 +1,10 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { catalog } from "../lib/catalog";
+const sources = Object.entries(catalog.sources).sort(([,a],[,b]) => a.tier - b.tier);
+const labels = {1:"Primary source",2:"Technical reference",3:"Community calibration"};
+---
+<BaseLayout title="Study resources" description="Curated official, technical, and community sources for Claude certification preparation." eyebrow="Source library">
+  <h1>Use the right source for the question.</h1><p class="hero-copy">Exam guides define scope. Product documentation resolves behavior. Community accounts help calibrate study effort, not settle technical claims.</p>
+  <div class="resource-list">{sources.map(([,source]) => <article class="resource-card"><span class="tier">{labels[source.tier]}</span><h3><a href={source.url}>{source.label}</a></h3><p>{source.tier === 1 ? "Authoritative for exam scope and certification policy." : source.tier === 2 ? "Authoritative for product behavior and implementation detail." : "Useful candidate perspective; verify claims against primary sources."}</p></article>)}</div>
+</BaseLayout>

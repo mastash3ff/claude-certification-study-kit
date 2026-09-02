@@ -1,0 +1,33 @@
+{
+  "name": "claude-certification-study-kit",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {"node": ">=24"},
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && pagefind --site dist",
+    "preview": "astro preview",
+    "check": "astro check && npm run validate && vitest run",
+    "validate": "node scripts/validate-content.mjs",
+    "test": "vitest run",
+    "test:e2e": "npm run build && playwright test"
+  },
+  "dependencies": {
+    "@astrojs/preact": "^6.0.5",
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.2.10",
+    "preact": "^10.29.8"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.62.1",
+    "@testing-library/preact": "^3.2.4",
+    "@testing-library/user-event": "^14.6.6",
+    "jsdom": "^29.1.1",
+    "pagefind": "^1.5.2",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.11"
+  }
+}

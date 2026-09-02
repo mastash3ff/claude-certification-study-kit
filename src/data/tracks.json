@@ -1,0 +1,136 @@
+{
+  "verifiedAt": "2026-09-01",
+  "guideVersion": "1.0 (effective July 2026)",
+  "sources": {
+    "cert-catalog": {"label": "Anthropic Partner Certifications", "url": "https://anthropic-partners.skilljar.com/page/partner-certifications", "tier": 1},
+    "cert-faq": {"label": "Anthropic Certification FAQ", "url": "https://anthropic-partners.skilljar.com/page/faq-certifications", "tier": 1},
+    "ccao-f-guide": {"label": "Official CCAO-F certification page and Exam Guide", "url": "https://anthropic-partners.skilljar.com/claude-certified-associate-foundations-certification", "tier": 1},
+    "ccdv-f-guide": {"label": "Official CCDV-F certification page and Exam Guide", "url": "https://anthropic-partners.skilljar.com/page/partner-certifications", "tier": 1},
+    "ccar-f-guide": {"label": "Official CCAR-F certification page and Exam Guide", "url": "https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification", "tier": 1},
+    "ccar-p-guide": {"label": "Official CCAR-P certification page and Exam Guide", "url": "https://anthropic-partners.skilljar.com/page/partner-certifications", "tier": 1},
+    "claude-help": {"label": "Claude Help Center", "url": "https://support.claude.com/", "tier": 1},
+    "api": {"label": "Claude Messages API documentation", "url": "https://platform.claude.com/docs/en/api/messages", "tier": 1},
+    "agent-sdk": {"label": "Claude Agent SDK documentation", "url": "https://platform.claude.com/docs/en/agent-sdk/overview", "tier": 1},
+    "tool-use": {"label": "Claude tool use documentation", "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview", "tier": 1},
+    "mcp": {"label": "Model Context Protocol documentation", "url": "https://modelcontextprotocol.io/docs/getting-started/intro", "tier": 1},
+    "claude-code": {"label": "Claude Code documentation", "url": "https://code.claude.com/docs/en/overview", "tier": 1},
+    "prompting": {"label": "Anthropic prompt engineering documentation", "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview", "tier": 1},
+    "batching": {"label": "Message Batches API documentation", "url": "https://platform.claude.com/docs/en/build-with-claude/batch-processing", "tier": 1},
+    "prompt-caching": {"label": "Prompt caching documentation", "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching", "tier": 1},
+    "models": {"label": "Claude models overview", "url": "https://platform.claude.com/docs/en/about-claude/models/overview", "tier": 1},
+    "errors": {"label": "Claude API error documentation", "url": "https://platform.claude.com/docs/en/api/errors", "tier": 1},
+    "evals": {"label": "Anthropic evaluation documentation", "url": "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests", "tier": 1},
+    "security": {"label": "Anthropic safeguard guidance", "url": "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails", "tier": 1},
+    "ccao-community": {"label": "CCAO-F and CCDV-F free practice", "url": "https://ccdvprep.org/", "tier": 2},
+    "ccdv-community": {"label": "CCDV-F original practice and guide", "url": "https://claude.termidy.com/ccdv-f/", "tier": 2},
+    "ccar-f-community": {"label": "Claude Certification Guide CCAR-F mock", "url": "https://claudecertificationguide.com/mock-exam", "tier": 2},
+    "ccar-p-community": {"label": "Ravn CCAR-P practice exam", "url": "https://ravnhq.github.io/claude-certified-architect/guides/professional-en.html#ravn-practice-exam", "tier": 2}
+  },
+  "tracks": [
+    {
+      "id": "ccao-f", "code": "CCAO-F", "slug": "ccao-f", "shortName": "Associate Foundations", "role": "Associate", "level": "Foundations",
+      "summary": "Use Claude responsibly for professional productivity, evaluation, workflows, and knowledge management.",
+      "examItems": 60, "durationMinutes": 120, "priceUsd": 99, "validityMonths": 12, "countsForPartnerTier": false, "expectedQuestions": 30, "calibrationSource": "ccao-community",
+      "domains": [
+        {"id": "a-d1", "slug": "prompting-task-execution", "name": "Prompting and Task Execution", "weight": 14, "objectives": [
+          {"id": "1.1", "name": "Create effective prompts for business and technical tasks"}, {"id": "1.2", "name": "Apply task decomposition techniques"}, {"id": "1.3", "name": "Iterate prompts to improve output quality"}, {"id": "1.4", "name": "Adapt prompting strategies by task type"}
+        ]},
+        {"id": "a-d2", "slug": "output-evaluation-validation", "name": "Output Evaluation and Validation", "weight": 21, "objectives": [
+          {"id": "2.1", "name": "Evaluate outputs for accuracy and completeness"}, {"id": "2.2", "name": "Identify hallucinations, inconsistencies, and biases"}, {"id": "2.3", "name": "Apply fact-checking and validation techniques"}, {"id": "2.4", "name": "Determine when human review is required"}, {"id": "2.5", "name": "Edit, adapt, refine, and compare outputs"}, {"id": "2.6", "name": "Organize information and select output formats"}
+        ]},
+        {"id": "a-d3", "slug": "product-model-selection", "name": "Product and Model Selection", "weight": 12, "objectives": [
+          {"id": "3.1", "name": "Select appropriate Claude product features"}, {"id": "3.2", "name": "Differentiate Claude model types"}, {"id": "3.3", "name": "Align model choice with cost, speed, and quality"}, {"id": "3.4", "name": "Manage context limitations and memory"}
+        ]},
+        {"id": "a-d4", "slug": "workflow-integration-solution-design", "name": "Workflow Integration and Solution Design", "weight": 16, "objectives": [
+          {"id": "4.1", "name": "Analyze requirements and use cases"}, {"id": "4.2", "name": "Use Claude for research, planning, and optimization"}, {"id": "4.3", "name": "Support solution design and iteration"}, {"id": "4.4", "name": "Integrate Claude into existing workflows"}, {"id": "4.5", "name": "Communicate value and limitations"}
+        ]},
+        {"id": "a-d5", "slug": "configuration-knowledge-management", "name": "Configuration and Knowledge Management", "weight": 12, "objectives": [
+          {"id": "5.1", "name": "Configure Projects with instructions and knowledge"}, {"id": "5.2", "name": "Manage uploaded knowledge and connectors"}, {"id": "5.3", "name": "Create effective system-level instructions"}, {"id": "5.4", "name": "Maintain configurations and knowledge"}
+        ]},
+        {"id": "a-d6", "slug": "governance-risk-responsible-use", "name": "Governance, Risk, and Responsible Use", "weight": 15, "objectives": [
+          {"id": "6.1", "name": "Identify appropriate and inappropriate use cases"}, {"id": "6.2", "name": "Apply privacy, regulatory, and data-sensitivity controls"}, {"id": "6.3", "name": "Follow organizational AI policy"}, {"id": "6.4", "name": "Understand ethical implications"}
+        ]},
+        {"id": "a-d7", "slug": "troubleshooting-optimization", "name": "Troubleshooting and Optimization", "weight": 10, "objectives": [
+          {"id": "7.1", "name": "Diagnose underperforming prompts or outputs"}, {"id": "7.2", "name": "Adjust approaches from feedback and results"}, {"id": "7.3", "name": "Optimize workflows for efficiency and effectiveness"}
+        ]}
+      ]
+    },
+    {
+      "id": "ccdv-f", "code": "CCDV-F", "slug": "ccdv-f", "shortName": "Developer Foundations", "role": "Developer", "level": "Foundations",
+      "summary": "Build, integrate, secure, evaluate, and operate production applications and agents on Claude.",
+      "examItems": 53, "durationMinutes": 120, "priceUsd": 125, "validityMonths": 12, "countsForPartnerTier": true, "expectedQuestions": 25, "calibrationSource": "ccdv-community",
+      "domains": [
+        {"id": "d-d1", "slug": "agents-workflows", "name": "Agents and Workflows", "weight": 14.7, "objectives": [
+          {"id": "1.1", "name": "Agent Architecture", "weight": 4.5}, {"id": "1.2", "name": "Agent Construction with Claude", "weight": 5.3}, {"id": "1.3", "name": "Agent Patterns and Frameworks", "weight": 4.9}
+        ]},
+        {"id": "d-d2", "slug": "applications-integration", "name": "Applications and Integration", "weight": 33.1, "objectives": [
+          {"id": "2.1", "name": "Understanding Requirements", "weight": 3.4}, {"id": "2.2", "name": "Systems Life Cycle", "weight": 2.8}, {"id": "2.3", "name": "Claude API Mechanics", "weight": 6.8}, {"id": "2.4", "name": "Software Engineering Foundations", "weight": 7.4}, {"id": "2.5", "name": "Claude Application Design", "weight": 8.6}, {"id": "2.6", "name": "Configuration Management", "weight": 4.1}
+        ]},
+        {"id": "d-d3", "slug": "claude-code", "name": "Claude Code", "weight": 3.1, "objectives": [{"id": "3.1", "name": "Claude Code Operation", "weight": 3.1}]},
+        {"id": "d-d4", "slug": "eval-testing-debugging", "name": "Eval, Testing, and Debugging", "weight": 2.6, "objectives": [{"id": "4.1", "name": "Debugging and Error Handling", "weight": 2.6}]},
+        {"id": "d-d5", "slug": "model-selection-optimization", "name": "Model Selection and Optimization", "weight": 16.8, "objectives": [
+          {"id": "5.1", "name": "LLM Fundamentals", "weight": 5.2}, {"id": "5.2", "name": "Technical Fundamentals", "weight": 6.1}, {"id": "5.3", "name": "Model Selection and Tradeoffs", "weight": 2.7}, {"id": "5.4", "name": "Cost and Token Management", "weight": 2.8}
+        ]},
+        {"id": "d-d6", "slug": "prompt-context-engineering", "name": "Prompt and Context Engineering", "weight": 11, "objectives": [
+          {"id": "6.1", "name": "Context Engineering", "weight": 3.8}, {"id": "6.2", "name": "Prompt Engineering", "weight": 4.6}, {"id": "6.3", "name": "Output Handling", "weight": 2.6}
+        ]},
+        {"id": "d-d7", "slug": "security-safety", "name": "Security and Safety", "weight": 8.1, "objectives": [
+          {"id": "7.1", "name": "AI Application Security", "weight": 3.2}, {"id": "7.2", "name": "Guardrails and Safe Deployment", "weight": 2.3}, {"id": "7.3", "name": "Claude Hooks", "weight": 1}, {"id": "7.4", "name": "Identity, Secrets, and Key Management", "weight": 1.6}
+        ]},
+        {"id": "d-d8", "slug": "tools-mcps", "name": "Tools and MCPs", "weight": 10.6, "objectives": [
+          {"id": "8.1", "name": "Tool Implementation", "weight": 4.4}, {"id": "8.2", "name": "MCP Server Development", "weight": 2.1}, {"id": "8.3", "name": "Agentic Customization", "weight": 4.1}
+        ]}
+      ]
+    },
+    {
+      "id": "ccar-f", "code": "CCAR-F", "slug": "ccar-f", "shortName": "Architect Foundations", "role": "Architect", "level": "Foundations",
+      "summary": "Scope and design Claude solutions using orchestration, tools, Claude Code, structured output, and reliable context.",
+      "examItems": 60, "durationMinutes": 120, "priceUsd": 125, "validityMonths": 12, "countsForPartnerTier": true, "expectedQuestions": 30, "calibrationSource": "ccar-f-community",
+      "domains": [
+        {"id": "f-d1", "slug": "agentic-architecture-orchestration", "name": "Agentic Architecture and Orchestration", "weight": 27, "objectives": [
+          {"id": "1.1", "name": "Agentic loops"}, {"id": "1.2", "name": "Coordinator-subagent orchestration"}, {"id": "1.3", "name": "Subagent invocation and context"}, {"id": "1.4", "name": "Workflow enforcement and handoff"}, {"id": "1.5", "name": "Agent SDK hooks"}, {"id": "1.6", "name": "Task decomposition"}, {"id": "1.7", "name": "Session state, resumption, and forking"}
+        ]},
+        {"id": "f-d2", "slug": "tool-design-mcp", "name": "Tool Design and MCP Integration", "weight": 18, "objectives": [
+          {"id": "2.1", "name": "Tool interfaces and boundaries"}, {"id": "2.2", "name": "Structured MCP errors"}, {"id": "2.3", "name": "Tool distribution and tool choice"}, {"id": "2.4", "name": "MCP integration"}, {"id": "2.5", "name": "Built-in tool selection"}
+        ]},
+        {"id": "f-d3", "slug": "claude-code-workflows", "name": "Claude Code Configuration and Workflows", "weight": 20, "objectives": [
+          {"id": "3.1", "name": "CLAUDE.md hierarchy"}, {"id": "3.2", "name": "Commands and skills"}, {"id": "3.3", "name": "Path-specific rules"}, {"id": "3.4", "name": "Plan mode"}, {"id": "3.5", "name": "Iterative refinement"}, {"id": "3.6", "name": "CI/CD integration"}
+        ]},
+        {"id": "f-d4", "slug": "prompting-structured-output", "name": "Prompt Engineering and Structured Output", "weight": 20, "objectives": [
+          {"id": "4.1", "name": "Explicit criteria"}, {"id": "4.2", "name": "Few-shot prompting"}, {"id": "4.3", "name": "Tool use and JSON schemas"}, {"id": "4.4", "name": "Validation and retry loops"}, {"id": "4.5", "name": "Batch processing"}, {"id": "4.6", "name": "Independent and multi-pass review"}
+        ]},
+        {"id": "f-d5", "slug": "context-reliability", "name": "Context Management and Reliability", "weight": 15, "objectives": [
+          {"id": "5.1", "name": "Long-conversation context"}, {"id": "5.2", "name": "Escalation and ambiguity"}, {"id": "5.3", "name": "Multi-agent error propagation"}, {"id": "5.4", "name": "Large-codebase context"}, {"id": "5.5", "name": "Human review and calibration"}, {"id": "5.6", "name": "Provenance and uncertainty"}
+        ]}
+      ]
+    },
+    {
+      "id": "ccar-p", "code": "CCAR-P", "slug": "ccar-p", "shortName": "Architect Professional", "role": "Architect", "level": "Professional",
+      "summary": "Design and govern enterprise Claude solutions across integration, evaluation, risk, stakeholders, and operations.",
+      "examItems": 63, "durationMinutes": 120, "priceUsd": 175, "validityMonths": 12, "countsForPartnerTier": true, "expectedQuestions": 38, "calibrationSource": "ccar-p-community",
+      "domains": [
+        {"id": "p-d1", "slug": "solution-design-architecture", "name": "Solution Design and Architecture", "weight": 17, "objectives": [
+          {"id": "1.1", "name": "Translate business problems"}, {"id": "1.2", "name": "End-to-end architecture"}, {"id": "1.3", "name": "Select architecture patterns"}, {"id": "1.4", "name": "Multi-agent design"}, {"id": "1.5", "name": "Problem decomposition"}, {"id": "1.6", "name": "Business value and SLAs"}
+        ]},
+        {"id": "p-d2", "slug": "models-prompting-context", "name": "Claude Models, Prompting, and Context Engineering", "weight": 13, "objectives": [
+          {"id": "2.1", "name": "Model selection"}, {"id": "2.2", "name": "Prompts and guardrails"}, {"id": "2.3", "name": "Prompting techniques"}, {"id": "2.4", "name": "Context and token use"}, {"id": "2.5", "name": "Prompt reuse"}
+        ]},
+        {"id": "p-d3", "slug": "integration", "name": "Integration", "weight": 19, "objectives": [
+          {"id": "3.1", "name": "Capability bloat"}, {"id": "3.2", "name": "Authentication and authorization"}, {"id": "3.3", "name": "Accuracy-latency trade-offs"}, {"id": "3.4", "name": "Observability at scale"}, {"id": "3.5", "name": "RAG chunking and indexing"}, {"id": "3.6", "name": "Retrieval strategies"}, {"id": "3.7", "name": "Connection protocols"}, {"id": "3.8", "name": "Progressive discovery"}
+        ]},
+        {"id": "p-d4", "slug": "evaluation-testing-optimization", "name": "Evaluation, Testing, and Optimization", "weight": 16, "objectives": [
+          {"id": "4.1", "name": "Evaluation metrics"}, {"id": "4.2", "name": "Datasets and frameworks"}, {"id": "4.3", "name": "A/B testing"}, {"id": "4.4", "name": "Issue diagnosis"}, {"id": "4.5", "name": "Cost-performance optimization"}, {"id": "4.6", "name": "Operational monitoring"}
+        ]},
+        {"id": "p-d5", "slug": "governance-safety-risk", "name": "Governance, Safety, and Risk Management", "weight": 14, "objectives": [
+          {"id": "5.1", "name": "Guardrails and safety controls"}, {"id": "5.2", "name": "Risks and failure modes"}, {"id": "5.3", "name": "Human-in-the-loop"}, {"id": "5.4", "name": "Regulatory compliance"}, {"id": "5.5", "name": "Bias, fairness, and transparency"}
+        ]},
+        {"id": "p-d6", "slug": "stakeholders-lifecycle", "name": "Stakeholder Communication and Lifecycle Management", "weight": 14, "objectives": [
+          {"id": "6.1", "name": "Discovery and requirements"}, {"id": "6.2", "name": "Communicate trade-offs"}, {"id": "6.3", "name": "Feedback and SLA alignment"}, {"id": "6.4", "name": "Architecture documentation"}, {"id": "6.5", "name": "Lifecycle ownership"}
+        ]},
+        {"id": "p-d7", "slug": "developer-productivity-operations", "name": "Developer Productivity and Operational Enablement", "weight": 7, "objectives": [
+          {"id": "7.1", "name": "Team configuration"}, {"id": "7.2", "name": "AI-assisted workflows"}, {"id": "7.3", "name": "Debugging and operations"}
+        ]}
+      ]
+    }
+  ]
+}

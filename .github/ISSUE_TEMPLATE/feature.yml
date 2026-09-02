@@ -1,0 +1,18 @@
+name: Feature request
+description: Suggest a focused improvement to the study experience.
+title: "Feature: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Study problem
+      description: What is difficult today, and who experiences it?
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: Suggested change
+    validations:
+      required: true

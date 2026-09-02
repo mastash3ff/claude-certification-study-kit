@@ -1,0 +1,20 @@
+---
+import type { Track } from "../lib/types";
+import { sitePath } from "../lib/url";
+const { track } = Astro.props as { track: Track };
+---
+<article class="track-card">
+  <div class="track-card-top">
+    <span class="code-pill">{track.code}</span>
+    <span>{track.role} / {track.level}</span>
+  </div>
+  <h2><a href={sitePath(`/certifications/${track.slug}/`)}>{track.shortName}</a></h2>
+  <p>{track.summary}</p>
+  <dl class="compact-stats">
+    <div><dt>Exam</dt><dd>{track.examItems} items</dd></div>
+    <div><dt>Time</dt><dd>{track.durationMinutes} min</dd></div>
+    <div><dt>Domains</dt><dd>{track.domains.length}</dd></div>
+    <div><dt>Practice</dt><dd>{track.expectedQuestions} questions</dd></div>
+  </dl>
+  <a class="text-link" href={sitePath(`/certifications/${track.slug}/`)}>Open study track <span aria-hidden="true">-&gt;</span></a>
+</article>

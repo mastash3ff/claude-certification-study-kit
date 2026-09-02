@@ -1,0 +1,53 @@
+---
+import "../styles/global.css";
+import { sitePath } from "../lib/url";
+
+interface Props {
+  title: string;
+  description: string;
+  eyebrow?: string;
+}
+
+const { title, description, eyebrow } = Astro.props;
+const pageTitle = title === "Claude Certification Study Kit" ? title : `${title} | Claude Certification Study Kit`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href={sitePath("/favicon.svg")} type="image/svg+xml" />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href={sitePath("/")} aria-label="Claude Certification Study Kit home">
+        <span class="wordmark-mark">CC</span>
+        <span>Study Kit</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href={sitePath("/certifications/")}>Certifications</a>
+        <a href={sitePath("/compare/")}>Compare</a>
+        <a href={sitePath("/resources/")}>Resources</a>
+        <a href={sitePath("/search/")}>Search</a>
+      </nav>
+    </header>
+    <main id="main">
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p>Independent study material. Not affiliated with or endorsed by Anthropic.</p>
+      <nav aria-label="Footer navigation">
+        <a href={sitePath("/about/")}>About</a>
+        <a href={sitePath("/privacy/")}>Privacy</a>
+        <a href="https://github.com/mastash3ff/claude-certification-study-kit">GitHub</a>
+      </nav>
+    </footer>
+  </body>
+</html>

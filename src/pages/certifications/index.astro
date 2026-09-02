@@ -1,0 +1,12 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TrackCard from "../../components/TrackCard.astro";
+import ProgressTools from "../../components/ProgressTools";
+import { tracks } from "../../lib/catalog";
+---
+<BaseLayout title="Certification catalog" description="Compare all current Claude certification study tracks." eyebrow="Certification catalog">
+  <h1>Find the credential that matches your work.</h1>
+  <p class="hero-copy">Each track follows its official blueprint and includes a diagnostic, focused domain drills, study notes, and applied practice.</p>
+  <ProgressTools client:load />
+  <section class="catalog-grid" aria-label="Certification tracks">{tracks.map((track) => <TrackCard track={track} />)}</section>
+</BaseLayout>

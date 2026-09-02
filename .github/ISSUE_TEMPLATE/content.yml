@@ -1,0 +1,24 @@
+name: Content correction
+description: Report an inaccurate, unclear, or outdated study item.
+title: "Content: "
+labels: [content]
+body:
+  - type: input
+    id: location
+    attributes:
+      label: Page or question ID
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: Proposed correction
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Official source
+      description: Link to the exam guide or product documentation supporting the correction.
+    validations:
+      required: true

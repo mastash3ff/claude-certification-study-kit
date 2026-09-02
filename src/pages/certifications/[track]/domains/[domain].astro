@@ -1,0 +1,23 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import Quiz from "../../../../components/Quiz";
+import { tracks } from "../../../../lib/catalog";
+import { getQuestions } from "../../../../lib/questions";
+import { sitePath } from "../../../../lib/url";
+
+export function getStaticPaths() { return tracks.flatMap((track) => track.domains.map((domain) => ({ params: { track: track.slug, domain: domain.slug }, props: { track, domain } }))); }
+const { track, domain } = Astro.props;
+const entries = await getCollection("certifications", ({ data }) => data.track === track.id && data.kind === "domain" && data.domain === domain.id);
+if (entries.length !== 1) throw new Error(`Expected one content entry for ${track.id}/${domain.id}`);
+const { Content } = await render(entries[0]);
+const questions = getQuestions(track.id).filter((question) => question.domain === domain.id);
+---
+<BaseLayout title={domain.name} description={`Study notes and original practice for ${track.code}: ${domain.name}.`} eyebrow={`${track.code} / ${domain.weight}% of blueprint`}>
+  <div class="content-grid">
+    <article class="prose"><h1>{domain.name}</h1><p class="hero-copy">{domain.objectives.length} published objectives, {questions.length} focused practice questions.</p><Content /></article>
+    <aside class="side-nav"><strong>Objectives</strong>{domain.objectives.map((objective) => <span>{objective.id} · {objective.name}</span>)}<a href={sitePath(`/certifications/${track.slug}/`)}>Back to track</a></aside>
+  </div>
+  <div class="section-head"><div><p class="eyebrow">Practice</p><h2>Check the domain in context</h2></div><p>Drills explain each option as you go.</p></div>
+  <Quiz client:visible track={track} questions={questions} mode="drill" domain={domain} />
+</BaseLayout>

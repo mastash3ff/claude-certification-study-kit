@@ -1,0 +1,7 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { allQuestions } from "../lib/questions";
+---
+<BaseLayout title="About" description="How the independent Claude Certification Study Kit is researched and maintained." eyebrow="About the project">
+  <article class="prose"><h1>Original practice, explicit provenance.</h1><p>This public study kit turns the published Claude certification blueprints into usable study paths. Its {allQuestions.length} questions are original, not copied or reconstructed exam material.</p><h2>Editorial method</h2><p>Each question maps to exactly one published objective. Rationales explain every option and point toward primary product documentation. Community reports help calibrate emphasis, but never override official scope or documentation.</p><h2>Scoring boundary</h2><p>The app reports raw accuracy and a weighted study priority. Anthropic uses scaled scores; this project does not claim to reproduce them or predict a pass.</p><h2>Contributing</h2><p>Corrections and carefully sourced additions are welcome through the project repository. Code is MIT licensed. Study content is CC BY 4.0.</p></article>
+</BaseLayout>

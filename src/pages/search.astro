@@ -1,0 +1,15 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { sitePath } from "../lib/url";
+---
+<BaseLayout title="Search" description="Search Claude certification study notes and resources." eyebrow="Search">
+  <h1>Search the study kit.</h1><p class="hero-copy">Find a tool, architectural pattern, or exam objective across every track.</p>
+  <div id="search"><label for="query">Search terms</label><input id="query" type="search" autocomplete="off" style="display:block;width:min(42rem,100%);font:inherit;padding:1rem;border:1px solid var(--line);background:var(--card);margin:.5rem 0 1.5rem" /><div id="search-results" aria-live="polite"><p>Enter a term to search.</p></div></div>
+  <script is:inline define:vars={{ base: sitePath("") }}>
+    const input = document.querySelector("#query"); const output = document.querySelector("#search-results"); let pagefind;
+    input.addEventListener("input", async () => {
+      const query = input.value.trim(); if (!query) { output.innerHTML = "<p>Enter a term to search.</p>"; return; }
+      try { pagefind ??= await import(`${base}/pagefind/pagefind.js`); const search = await pagefind.search(query); const results = await Promise.all(search.results.slice(0,12).map((item) => item.data())); output.innerHTML = results.length ? results.map((result) => `<article class="resource-card"><h2><a href="${result.url}">${result.meta.title}</a></h2><p>${result.excerpt}</p></article>`).join("") : "<p>No results found.</p>"; } catch { output.innerHTML = "<p>Search is available in the production build.</p>"; }
+    });
+  </script>
+</BaseLayout>

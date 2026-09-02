@@ -1,49 +1,64 @@
-# Claude Certified Architect Study Kit
+# Claude Certification Study Kit
 
-An unofficial, diagnostic-first study kit for Anthropic's two architect certifications:
+An independent, open-source catalog and practice application for the current Claude certification portfolio.
 
-| Track | Domains | Official exam | Local diagnostic |
-|---|---:|---:|---:|
-| Claude Certified Architect – Foundations (`CCAR-F`) | 5 | 60 items / 120 minutes | 30 items |
-| Claude Certified Architect – Professional (`CCAR-P`) | 7 | 63 items / 120 minutes | 38 items |
+| Track | Role | Level | Official exam | Original practice |
+| --- | --- | --- | ---: | ---: |
+| `CCAO-F` | Associate | Foundations | 60 items | 30 questions |
+| `CCDV-F` | Developer | Foundations | 53 items | 25 questions |
+| `CCAR-F` | Architect | Foundations | 60 items | 30 questions |
+| `CCAR-P` | Architect | Professional | 63 items | 38 questions |
 
-The local questions are original. Each one maps to a published objective in the official Exam Guide, version 1.0, effective July 2026. The kit contains no live, reconstructed, or copied exam questions.
+The application includes 27 blueprint domain guides, full-track diagnostics, immediate-feedback domain drills, local progress persistence, and JSON export/import. It has no accounts, analytics, backend, or copied exam questions.
 
-## Start here
+## Run locally
+
+Use Node 24 or newer.
 
 ```bash
-python3 -m http.server 8000 -d app
+npm ci
+npm run dev
 ```
 
-Open <http://localhost:8000>, choose a track, and take the full diagnostic before reading the detailed notes. Progress stays in the browser and can be exported as JSON.
+Astro serves the project under its configured Pages base path at <http://localhost:4321/claude-certification-study-kit/>.
 
-Then follow this sequence:
+## Verify and build
 
-1. Review the domains ranked by weighted study priority.
-2. Read the matching [track guide](docs/study-strategy.md) and primary documentation.
-3. Complete the relevant [Foundations labs](docs/ccar-f/labs.md) or [Professional capstone](docs/ccar-p/capstone.md).
-4. Retake missed objectives as domain drills.
-5. Use a full external mock for unseen calibration.
+```bash
+npm run check
+npm run build
+npm run test:e2e
+```
 
-The app reports raw percentages. Anthropic uses scaled scores, and no public raw-to-scaled conversion exists. A local score is therefore never labeled as an Anthropic score or a pass prediction.
-
-## What to trust
-
-Use the [official Exam Guides and Academy courses](docs/resources.md) as the source of scope. Use product documentation to resolve technical details. Community guides and candidate reports are useful for explanation and difficulty calibration, but they are not authoritative.
-
-The certification is currently limited to people at Claude Partner Network organizations. The former official practice exam was retired during the move to Pearson VUE; the current Exam Guides contain sample questions instead. Confirm current eligibility, pricing, policies, and blueprints in the [Anthropic certification FAQ](https://anthropic-partners.skilljar.com/page/faq-certifications) before scheduling.
+`npm run check` type-checks the application, validates every track, objective, question, rationale, and source reference, then runs the focused unit tests. `npm run build` produces the static site and Pagefind search index in `dist/`.
 
 ## Repository map
 
-- `app/` — static study application and question data
-- `docs/` — study strategy, curated sources, track notes, labs, and capstone
-- `scripts/check.py` — content-contract and test runner
-- `tests/` — focused content and scoring tests
-
-## Check the repository
-
-```bash
-python3 scripts/check.py
+```text
+src/
+|-- components/              interactive quizzes and reusable UI
+|-- content/certifications/  track, domain, and applied-practice notes
+|-- data/questions/          original objective-mapped question banks
+|-- data/tracks.json         certification catalog and source registry
+|-- lib/                     scoring, persistence, and catalog logic
+`-- pages/                   static public routes
+scripts/                     content-contract validation
+tests/                       unit and browser tests
+.github/                     contribution forms and automation
 ```
 
-Source catalog last reviewed: **2026-09-01**. Anthropic marks its Exam Guides as subject to change without notice.
+## Editorial boundaries
+
+- Official exam guides and certification pages define scope.
+- Product documentation resolves technical behavior.
+- Community material is labeled as calibration, not authority.
+- Local percentages are study signals, not Anthropic scaled scores or pass predictions.
+- All questions are original and map to one published objective.
+
+The source catalog was reviewed on 2026-09-01. Certification details can change without notice; verify scheduling and policy details with Anthropic before purchasing an exam.
+
+## Contributing and licenses
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the content contract and local checks. Application code is available under the [MIT License](LICENSE). Original written study content and question banks are available under [CC BY 4.0](LICENSE-CONTENT).
+
+Claude and Anthropic are trademarks of Anthropic PBC. This project is not affiliated with or endorsed by Anthropic.

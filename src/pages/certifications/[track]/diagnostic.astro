@@ -1,0 +1,15 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Quiz from "../../../components/Quiz";
+import { tracks } from "../../../lib/catalog";
+import { getQuestions } from "../../../lib/questions";
+
+export function getStaticPaths() { return tracks.map((track) => ({ params: { track: track.slug }, props: { track } })); }
+const { track } = Astro.props;
+const questions = getQuestions(track.id);
+---
+<BaseLayout title={`${track.shortName} diagnostic`} description={`Original ${track.code} diagnostic questions mapped to the official blueprint.`} eyebrow={`${track.code} diagnostic`}>
+  <h1>Find your strongest and weakest domains.</h1>
+  <p class="hero-copy">Answer all {questions.length} questions without feedback. Your final report ranks domains using accuracy and published exam weight.</p>
+  <Quiz client:load track={track} questions={questions} mode="diagnostic" />
+</BaseLayout>

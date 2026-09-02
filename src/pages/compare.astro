@@ -1,0 +1,12 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { tracks } from "../lib/catalog";
+import { sitePath } from "../lib/url";
+---
+<BaseLayout title="Compare certifications" description="Compare role, level, exam format, and practice coverage across Claude certifications." eyebrow="Side-by-side">
+  <h1>Compare Claude certifications.</h1><p class="hero-copy">Choose for the work you do now, or the responsibilities you want next.</p>
+  <div style="overflow-x:auto"><table class="comparison"><thead><tr><th>Certification</th><th>Role</th><th>Level</th><th>Exam</th><th>Domains</th><th>Local practice</th></tr></thead><tbody>
+    {tracks.map((track) => <tr><td><a href={sitePath(`/certifications/${track.slug}/`)}><strong>{track.code}</strong><br />{track.shortName}</a></td><td>{track.role}</td><td>{track.level}</td><td>{track.examItems} / {track.durationMinutes} min</td><td>{track.domains.length}</td><td>{track.expectedQuestions}</td></tr>)}
+  </tbody></table></div>
+  <div class="callout"><strong>Foundations or Professional?</strong> Foundations tracks emphasize reliable application of Claude tools and patterns. Architect Professional expects broader system design, operations, and production tradeoffs.</div>
+</BaseLayout>
